@@ -85,6 +85,9 @@ module.exports = {
   devtool: 'source-map',
 
   devServer: {
+    client: {
+      overlay: false,
+    },
     hot: true,
     static: path.resolve(__dirname, 'dist'),
     setupMiddlewares: (middlewares, devServer) => {

@@ -32,9 +32,18 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@loadable/component": "^5.15.2",
+    "@mui/icons-material": "^5.8.0",
+    "@mui/material": "^5.8.1",
     "dotenv-webpack": "^7.1.0",
+    "mathjs": "^10.6.0",
+    "ml-matrix": "^6.10.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-force-graph-2d": "^1.23.10",
+    "react-sizeme": "^3.0.2",
     "sass": "^1.50.1",
     "sass-loader": "^12.6.0"
   }
