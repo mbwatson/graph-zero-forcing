@@ -54,9 +54,9 @@ export const App = () => {
         </Stack>
       </Box>
 
-      <div style={{ border: 'solid #999', borderWidth: '1px 0 1px 0' }}>
-        <Graph nodes={ graph.nodes } edges={ graph.edges } />
-      </div>
+      <hr />
+      <Graph nodes={ graph.nodes } edges={ graph.edges } />
+      <hr />
       
     </Fragment>
   )
