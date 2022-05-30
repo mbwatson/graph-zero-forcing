@@ -1,0 +1,1 @@
+{"version":3,"file":"848.js","mappings":"gHAEA,Q,KAAA","sources":["webpack:///./src/components/graph/force-graph.js"],"sourcesContent":["import ForceGraph2D from 'react-force-graph-2d'\n\nexport default ForceGraph2D\n"],"names":[],"sourceRoot":""}
