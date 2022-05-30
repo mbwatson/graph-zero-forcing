@@ -56,7 +56,7 @@ export const MatrixEditor = () => {
         onClick={ handleClickValidate }
       >Generate Graph</Button>
       {
-        error && <div>{ error.message }</div>
+        error && <Typography color="darkred">{ error.message }</Typography>
       }
     </Stack>
   )

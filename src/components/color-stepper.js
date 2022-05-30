@@ -1,5 +1,6 @@
-import { Button, Stack, Typography, useTheme } from '@mui/material'
+import { Button, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import {
+  RestartAlt as ResetIcon,
   SkipNext as StepIcon,
 } from '@mui/icons-material'
 import { useGraph } from '../context'
@@ -27,9 +28,28 @@ const theme = useTheme()
         }}>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
       </Stack>
 
-      <Button onClick={ colorStep } variant="outlined" color="primary" size="small">
-        <StepIcon />
-      </Button>
+      <Stack spacing={ 1 } direction="row">
+        <Tooltip title="Apply coloring rule" placement="top">
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            endIcon={ <StepIcon /> }
+            onClick={ colorStep }
+            disabled={ graph.coloredNodes.size === 0 || graph.coloredNodes.size === graph.nodes.length }
+          >Step</Button>
+        </Tooltip>
+        <Tooltip title="Clear coloring" placement="top">
+          <Button
+            variant="outlined"
+            color="primary"
+            size="small"
+            endIcon={ <ResetIcon /> }
+            onClick={ graph.uncolorAllNodes }
+            disabled={ graph.coloredNodes.size === 0 }
+          >Reset</Button>
+        </Tooltip>
+      </Stack>
     </Stack>
   )
 }
