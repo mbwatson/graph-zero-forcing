@@ -50,6 +50,7 @@ export const MatrixEditor = () => {
         multiline
         value={ textContent }
         onChange={ handleChangeText }
+        maxRows={ 15 }
       />
       <Button
         variant="contained"

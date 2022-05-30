@@ -12,11 +12,11 @@ export const App = () => {
     <Fragment>
       <Graph nodes={ graph.nodes } edges={ graph.edges } />
 
-      <Stack sx={{backgroundColor: '#ccc'}}>
+      <Stack sx={{ backgroundColor: '#ccc'}}>
         <ColorStepper />
       </Stack>
 
-      <Container maxWidth="md" sx={{ padding: '1rem' }}>
+      <Container maxWidth="lg" sx={{ padding: '1rem' }}>
         <MatrixEditor />
       </Container>
 
