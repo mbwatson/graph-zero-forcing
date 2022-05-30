@@ -2,10 +2,9 @@ import { Fragment } from 'react'
 import { Graph } from './components/graph'
 import matrices from './lib/matrices'
 import { useGraph } from './context'
-import { Box, Button, MenuItem, Select, Stack, Typography } from '@mui/material'
+import { Box, Button, MenuItem, Select, Stack } from '@mui/material'
 import {
   SkipNext as StepIcon,
-  Check as AllColoredIcon,
 } from '@mui/icons-material'
 
 export const App = () => {
