@@ -4,6 +4,7 @@ import { GraphProvider } from './context'
 import { CssBaseline } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from './theme'
+import  './index.scss'
 
 const container = document.getElementById('root')
 const root = createRoot(container)
@@ -12,7 +13,6 @@ const ProvisionedApp = () => {
   return (
     <ThemeProvider theme={ theme }>
       <GraphProvider>
-        <CssBaseline />
         <App />
       </GraphProvider>
     </ThemeProvider>

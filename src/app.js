@@ -1,13 +1,15 @@
 import { Fragment } from 'react'
 import { Graph } from './components/graph'
-import matrices from './lib/matrices'
 import { useGraph } from './context'
-import { Box, Button, MenuItem, Select, Stack } from '@mui/material'
+import { Button, MenuItem, Select, Stack, Typography, useTheme } from '@mui/material'
 import {
   SkipNext as StepIcon,
 } from '@mui/icons-material'
+import matrices from './lib/matrices'
+import { Matrix } from './components/matrix'
 
 export const App = () => {
+  const theme = useTheme()
   const { graph, setGraphName, colorStep } = useGraph()
 
   const handleSelectGraph = event => {
@@ -17,47 +19,48 @@ export const App = () => {
 
   return (
     <Fragment>
-      <Box sx={{ padding: '1rem' }}>
-        <Stack
-          direction="row"
-          spacing={ 2 }
-          align="center"
-          justifyContent="center"
-        >
-          <Select value={ graph.name } onChange={ handleSelectGraph }>
-            {
-              Object.keys(matrices).map(key => (
-                <MenuItem key={ `option-${ key }` } value={ key }>{ key }</MenuItem>
-              ))
-            }
-          </Select>
-          <Button onClick={ colorStep } variant="outlined" size="small"><StepIcon /></Button>
-        </Stack>
-
-        <br />
-
-        <Stack spacing={ 2 }>
-          <Stack
-            spacing={ 1 }
-            direction="row"
-            align="center"
-            sx={{ color: graph.coloredNodes.size === graph.nodes.length ? '#0ac' : '#222' }}
-          >
-            <strong>colored nodes:</strong>
-            <code>{ graph.coloredNodes.size > 0 ? `{${ [...graph.coloredNodes].join(', ') }}` : '∅' }</code>
-          </Stack>
-
-          <Stack spacing={ 1 } direction="row">
-            <strong>adjacency matrix:</strong>
-            <code>{ JSON.stringify(graph.adjacencyMatrix, null, 0) }</code>
-          </Stack>
-        </Stack>
-      </Box>
+      <Stack
+        sx={{ padding: theme.spacing(2) }}
+        direction="row"
+        spacing={ 2 }
+        align="center"
+        justifyContent="center"
+      >
+        <Select value={ graph.name } onChange={ handleSelectGraph } sx={{ width: '200px' }}>
+          {
+            Object.keys(matrices).map(key => (
+              <MenuItem key={ `option-${ key }` } value={ key }>{ key }</MenuItem>
+            ))
+          }
+        </Select>
+        <Button onClick={ colorStep } variant="outlined" color="primary" size="small"><StepIcon /></Button>
+      </Stack>
 
       <hr />
       <Graph nodes={ graph.nodes } edges={ graph.edges } />
       <hr />
       
+      <Stack spacing={ 2 } sx={{ padding: theme.spacing(2) }}>
+        <Stack spacing={ 1 } direction="row">
+          <Typography variant="h6">ADJACENCY MATRIX:</Typography>
+          <Matrix matrix={ graph.adjacencyMatrix.data } />
+        </Stack>
+
+        <Stack
+          spacing={ 1 }
+          direction="row"
+          align="center"
+
+        >
+          <Typography variant="h6">COLORED NODES:</Typography>
+          <code style={{
+            color: graph.coloredNodes.size === graph.nodes.length
+              ? theme.palette.secondary.dark
+              : theme.palette.text.primary
+          }}>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
+        </Stack>
+      </Stack>
+
     </Fragment>
   )
 }
