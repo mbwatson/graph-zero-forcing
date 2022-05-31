@@ -36,7 +36,7 @@ export const ColorStepper = () => {
         <Typography component={ Stack } justifyContent="center">
           { graph.coloredNodes.size } of { graph.nodes.length } colored nodes:
         </Typography>
-        <code>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
+        <code>{ `{${ [...graph.coloredNodes].join(', ') }}` }</code>
         {
           graph.coloredNodes.size === graph.nodes.length && (
             <Tooltip title="All nodes are colored!" placement="top">
