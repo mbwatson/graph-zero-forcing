@@ -94,13 +94,12 @@ module.exports = {
       if (!devServer) {
         throw new Error('webpack-dev-server is not defined')
       }
-      console.log()
-      console.log(` _|_|_|    _|_|_|_|  _|      _|    _|_|_|  _|_|_| `)
-      console.log(` _|    _|  _|        _|_|    _|  _|          _|   `)
-      console.log(` _|_|_|    _|_|_|    _|  _|  _|  _|          _|   `)
-      console.log(` _|    _|  _|        _|    _|_|  _|          _|   `)
-      console.log(` _|    _|  _|_|_|_|  _|      _|    _|_|_|  _|_|_| `)
-      console.log(`\n`)
+      console.log(`  _ _ _ _ _ `)
+      console.log(` |_|▩|_|_|▩|`)
+      console.log(` |▩|_|▩|_|_|`)
+      console.log(` |_|▩|_|▩|_|`)
+      console.log(` |_|_|▩|_|▩|`)
+      console.log(` |▩|_|_|▩|_|\n`)
       return middlewares
     },
   },
