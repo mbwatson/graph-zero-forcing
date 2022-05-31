@@ -16,7 +16,7 @@ const inputToMatrix = input => input
 const fontSizes = [...Array(14).keys()].map(x => x + 7)
 
 export const MatrixEditor = () => {
-  const { adjMatrix, setAdjMatrix } = useGraph()
+  const { graph, adjMatrix, setAdjMatrix } = useGraph()
   const textElement = useRef()
   const [textContent, setTextContent] = useState(matrixToInput(adjMatrix.data))
   const [error, setError] = useState(null)
@@ -37,6 +37,7 @@ export const MatrixEditor = () => {
         throw new Error('Matrix must be symmetric')
       }
       setAdjMatrix(newMatrix)
+      graph.uncolorAllNodes()
     } catch (error) {
       setError(error)
     }
