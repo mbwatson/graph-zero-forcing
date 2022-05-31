@@ -26,7 +26,7 @@ export const Graph = ({ nodes, edges }) => {
         ({ size }) => (
           <ForceGraph2D
             width={ size.width }
-            height={ 500 }
+            height={ 600 }
             graphData={{ nodes, links: edges }}
             enablePointerInteraction={ true }
             onNodeClick={ handleClickNode }

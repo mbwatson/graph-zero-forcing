@@ -15,7 +15,22 @@ const theme = useTheme()
       direction="row"
       align="center"
       justifyContent="space-between"
-      sx={{ padding: '1rem' }}
+      sx={{
+        padding: '1rem',
+        position: 'relative',
+        '&::before': {
+          position: 'absolute',
+          left: '1rem',
+          top: '-1.5rem',
+          content: '"Select nodes to color"',
+          color: '#999',
+          fontSize: '75%',
+          transform: graph.coloredNodes.size === 0 ? 'translateY(0)' : 'translateY(2rem)',
+          filter: graph.coloredNodes.size === 0 ? 'opacity(1.0)' : 'opacity(0.0)',
+          transition: 'transform 250ms, filter 250ms',
+          zIndex: -1,
+        }
+      }}
     >
       <Stack spacing={ 1 } direction="row">
         <Typography component={ Stack } justifyContent="center">
