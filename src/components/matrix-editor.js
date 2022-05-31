@@ -11,7 +11,8 @@ const inputToMatrix = input => input
   .replace(/[^\S\r\n]/g, '')
   .split(/\n/)
   .map(row => row.split(',')
-  .map(x => parseInt(x)))
+    .map(x => parseInt(x))
+  )
 
 const fontSizes = [...Array(14).keys()].map(x => x + 7)
 
