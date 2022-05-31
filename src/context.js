@@ -2,12 +2,24 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 import PropTypes from 'prop-types'
 import { Matrix } from 'ml-matrix'
 
+const initialGraph = new Matrix([
+  [0, 1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 1, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 1, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 1, 0, 1, 0],
+  [0, 0, 0, 0, 0, 0, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1, 0],
+])
+
 const GraphContext = createContext({})
 
 export const useGraph = () => useContext(GraphContext)
 
 export const GraphProvider = ({ children }) => {
-  const [adjMatrix, setAdjMatrix] = useState(new Matrix([[0,1],[1,0]]))
+  const [adjMatrix, setAdjMatrix] = useState(initialGraph)
   const [nodes, setNodes] = useState([])
   const [edges, setEdges] = useState([])
   const [coloredNodes, setColoredNodes] = useState(new Set())
