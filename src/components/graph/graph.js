@@ -34,7 +34,7 @@ export const Graph = ({ nodes, edges }) => {
             linkColor={ () => '#aaa' }
             linkWidth={ 1 }
             linkOpacity="1.0"
-            nodeLabel={ node => node.id }
+            nodeLabel={ node => `${ node.id }` }
           />
         )
       }
