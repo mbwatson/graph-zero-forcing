@@ -22,6 +22,7 @@ export const MatrixEditor = () => {
   const [textContent, setTextContent] = useState(matrixToInput(adjMatrix.data))
   const [error, setError] = useState(null)
   const [fontSize, setFontSize] = useState(12)
+  const [showResetButton, setShowResetButton] = useState(false)
 
   const handleClickValidate = () => {
     setError(null)
@@ -39,12 +40,14 @@ export const MatrixEditor = () => {
       }
       setAdjMatrix(newMatrix)
       graph.uncolorAllNodes()
+      setShowResetButton(false)
     } catch (error) {
       setError(error)
     }
   }
 
   const handleChangeText = event => {
+    setShowResetButton(true)
     setTextContent(event.target.value)
   }
 
@@ -53,6 +56,7 @@ export const MatrixEditor = () => {
   }
 
   const handleClickResetMatrix = () => {
+    setShowResetButton(false)
     setTextContent(matrixToInput(adjMatrix.data))
   }
 
@@ -63,13 +67,17 @@ export const MatrixEditor = () => {
           <Typography component={ Stack } justifyContent="center">
             ADJACENCY MATRIX
           </Typography>
-          <Tooltip title="Reset adjacency matrix" placement="right">
-            <IconButton
-              size="small"
-              variant="outlined"
-              onClick={ handleClickResetMatrix }
-            ><ResetIcon fontSize="small" /></IconButton>
-          </Tooltip>
+          {
+            showResetButton && (
+              <Tooltip title="Reset adjacency matrix" placement="right">
+                <IconButton
+                  size="small"
+                  variant="outlined"
+                  onClick={ handleClickResetMatrix }
+                ><ResetIcon fontSize="small" /></IconButton>
+              </Tooltip>
+            )
+          }
         </Stack>
         <Stack direction="row" spacing={ 2 }>
           <FormControl>
@@ -92,7 +100,7 @@ export const MatrixEditor = () => {
         multiline
         value={ textContent }
         onChange={ handleChangeText }
-        maxRows={ 15 }
+        maxRows={ 30 }
         inputProps={{ sx: { fontSize, fontFamily: 'monospace', lineHeight: 1 } }}
       />
       <Button
