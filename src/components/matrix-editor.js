@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Button, FormControl, IconButton, InputLabel, MenuItem, Select, Stack, TextField, Tooltip, Typography } from '@mui/material'
+import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select, Stack, TextField, Tooltip, Typography } from '@mui/material'
 import {
   RestartAlt as ResetIcon,
 } from '@mui/icons-material'
@@ -95,18 +95,23 @@ export const MatrixEditor = () => {
           </FormControl>
         </Stack>
       </Stack>
-      <TextField
-        ref={ textElement }
-        multiline
-        value={ textContent }
-        onChange={ handleChangeText }
-        maxRows={ 30 }
-        inputProps={{ sx: { fontSize, fontFamily: 'monospace', lineHeight: 1 } }}
-      />
-      <Button
-        variant="contained"
-        onClick={ handleClickValidate }
-      >Generate Graph</Button>
+      <Box>
+        <TextField
+          ref={ textElement }
+          multiline
+          fullWidth
+          value={ textContent }
+          onChange={ handleChangeText }
+          maxRows={ 30 }
+          inputProps={{ sx: { fontSize, fontFamily: 'monospace', lineHeight: 1 } }}
+        />
+        <br /><br />
+        <Button
+          fullWidth
+          variant="contained"
+          onClick={ handleClickValidate }
+        >Generate Graph</Button>
+      </Box>
       {
         error && <Typography color="darkred">{ error.message }</Typography>
       }
