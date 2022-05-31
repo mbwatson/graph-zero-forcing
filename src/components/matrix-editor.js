@@ -11,16 +11,18 @@ const inputToMatrix = input => input
   .replace(/[^\S\r\n]/g, '')
   .split(/\n/)
   .map(row => row.split(',')
-  .map(x => parseInt(x)))
+    .map(x => parseInt(x))
+  )
 
 const fontSizes = [...Array(14).keys()].map(x => x + 7)
 
 export const MatrixEditor = () => {
-  const { adjMatrix, setAdjMatrix } = useGraph()
+  const { graph, adjMatrix, setAdjMatrix } = useGraph()
   const textElement = useRef()
   const [textContent, setTextContent] = useState(matrixToInput(adjMatrix.data))
   const [error, setError] = useState(null)
   const [fontSize, setFontSize] = useState(12)
+  const [showResetButton, setShowResetButton] = useState(false)
 
   const handleClickValidate = () => {
     setError(null)
@@ -37,12 +39,15 @@ export const MatrixEditor = () => {
         throw new Error('Matrix must be symmetric')
       }
       setAdjMatrix(newMatrix)
+      graph.uncolorAllNodes()
+      setShowResetButton(false)
     } catch (error) {
       setError(error)
     }
   }
 
   const handleChangeText = event => {
+    setShowResetButton(true)
     setTextContent(event.target.value)
   }
 
@@ -51,6 +56,7 @@ export const MatrixEditor = () => {
   }
 
   const handleClickResetMatrix = () => {
+    setShowResetButton(false)
     setTextContent(matrixToInput(adjMatrix.data))
   }
 
@@ -61,13 +67,17 @@ export const MatrixEditor = () => {
           <Typography component={ Stack } justifyContent="center">
             ADJACENCY MATRIX
           </Typography>
-          <Tooltip title="Reset adjacency matrix" placement="right">
-            <IconButton
-              size="small"
-              variant="outlined"
-              onClick={ handleClickResetMatrix }
-            ><ResetIcon fontSize="small" /></IconButton>
-          </Tooltip>
+          {
+            showResetButton && (
+              <Tooltip title="Reset adjacency matrix" placement="right">
+                <IconButton
+                  size="small"
+                  variant="outlined"
+                  onClick={ handleClickResetMatrix }
+                ><ResetIcon fontSize="small" /></IconButton>
+              </Tooltip>
+            )
+          }
         </Stack>
         <Stack direction="row" spacing={ 2 }>
           <FormControl>
@@ -90,7 +100,7 @@ export const MatrixEditor = () => {
         multiline
         value={ textContent }
         onChange={ handleChangeText }
-        maxRows={ 15 }
+        maxRows={ 30 }
         inputProps={{ sx: { fontSize, fontFamily: 'monospace', lineHeight: 1 } }}
       />
       <Button
