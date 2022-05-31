@@ -34,7 +34,7 @@ export const ColorStepper = () => {
     >
       <Stack spacing={ 1 } direction="row" alignItems="center">
         <Typography component={ Stack } justifyContent="center">
-          COLORED NODES:
+          { graph.coloredNodes.size } of { graph.nodes.length } colored nodes:
         </Typography>
         <code>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
         {
