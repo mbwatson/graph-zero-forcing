@@ -1,5 +1,6 @@
-import { Button, Stack, Tooltip, Typography, useTheme } from '@mui/material'
+import { Button, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import {
+  Check as CheckIcon,
   RestartAlt as ResetIcon,
   SkipNext as StepIcon,
 } from '@mui/icons-material'
@@ -13,7 +14,7 @@ const theme = useTheme()
     <Stack
       spacing={ 1 }
       direction="row"
-      align="center"
+      alignItems="center"
       justifyContent="space-between"
       sx={{
         padding: '1rem',
@@ -32,15 +33,18 @@ const theme = useTheme()
         }
       }}
     >
-      <Stack spacing={ 1 } direction="row">
+      <Stack spacing={ 1 } direction="row" alignItems="center">
         <Typography component={ Stack } justifyContent="center">
           COLORED NODES:
         </Typography>
-        <code style={{
-          color: graph.coloredNodes.size === graph.nodes.length
-            ? theme.palette.secondary.dark
-            : theme.palette.text.primary
-        }}>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
+        <code>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
+        {
+          graph.coloredNodes.size === graph.nodes.length && (
+            <Tooltip title="All nodes are colored!" placement="top">
+              <CheckIcon color="success" />
+            </Tooltip>
+          )
+        }
       </Stack>
 
       <Stack spacing={ 1 } direction="row">
@@ -55,14 +59,13 @@ const theme = useTheme()
           >Step</Button>
         </Tooltip>
         <Tooltip title="Clear coloring" placement="top">
-          <Button
+          <IconButton
             variant="outlined"
             color="primary"
             size="small"
-            endIcon={ <ResetIcon /> }
             onClick={ graph.uncolorAllNodes }
             disabled={ graph.coloredNodes.size === 0 }
-          >Reset</Button>
+          ><ResetIcon fontSize="small" /></IconButton>
         </Tooltip>
       </Stack>
     </Stack>
