@@ -1,4 +1,4 @@
-import { Button, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
+import { Button, IconButton, Stack, Tooltip, Typography } from '@mui/material'
 import {
   Check as CheckIcon,
   RestartAlt as ResetIcon,
@@ -7,7 +7,6 @@ import {
 import { useGraph } from '../context'
 
 export const ColorStepper = () => {
-const theme = useTheme()
   const { colorStep, graph } = useGraph()
 
   return (
