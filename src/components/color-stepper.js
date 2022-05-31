@@ -16,7 +16,7 @@ export const ColorStepper = () => {
       alignItems="center"
       justifyContent="space-between"
       sx={{
-        padding: '1rem',
+        padding: '0.5rem 1rem',
         position: 'relative',
         '&::before': {
           position: 'absolute',
