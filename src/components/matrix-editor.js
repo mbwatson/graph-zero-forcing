@@ -3,7 +3,7 @@ import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select, Sta
 import {
   RestartAlt as ResetIcon,
 } from '@mui/icons-material'
-import { useGraph } from '../context'
+import { useGraph } from '../graph-context'
 import { Matrix } from 'ml-matrix'
 
 const matrixToInput = m => m.map(row => row.join()).join('\n')

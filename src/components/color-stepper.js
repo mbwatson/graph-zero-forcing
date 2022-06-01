@@ -4,7 +4,7 @@ import {
   RestartAlt as ResetIcon,
   SkipNext as StepIcon,
 } from '@mui/icons-material'
-import { useGraph } from '../context'
+import { useGraph } from '../graph-context'
 
 export const ColorStepper = () => {
   const { colorStep, graph } = useGraph()
