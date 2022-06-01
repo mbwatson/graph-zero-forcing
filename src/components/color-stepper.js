@@ -4,7 +4,7 @@ import {
   RestartAlt as ResetIcon,
   SkipNext as StepIcon,
 } from '@mui/icons-material'
-import { useGraph } from '../context'
+import { useGraph } from '../graph-context'
 
 export const ColorStepper = () => {
   const { colorStep, graph } = useGraph()
@@ -16,7 +16,7 @@ export const ColorStepper = () => {
       alignItems="center"
       justifyContent="space-between"
       sx={{
-        padding: '1rem',
+        padding: '0.5rem 1rem',
         position: 'relative',
         '&::before': {
           position: 'absolute',
@@ -36,7 +36,7 @@ export const ColorStepper = () => {
         <Typography component={ Stack } justifyContent="center">
           { graph.coloredNodes.size } of { graph.nodes.length } colored nodes:
         </Typography>
-        <code>{ `{ ${ [...graph.coloredNodes].join(', ') } }` }</code>
+        <code>{ `{${ [...graph.coloredNodes].join(', ') }}` }</code>
         {
           graph.coloredNodes.size === graph.nodes.length && (
             <Tooltip title="All nodes are colored!" placement="top">
@@ -48,23 +48,27 @@ export const ColorStepper = () => {
 
       <Stack spacing={ 1 } direction="row">
         <Tooltip title="Apply coloring rule" placement="top">
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            endIcon={ <StepIcon /> }
-            onClick={ colorStep }
-            disabled={ graph.coloredNodes.size === 0 || graph.coloredNodes.size === graph.nodes.length }
-          >Step</Button>
+          <span>
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              endIcon={ <StepIcon /> }
+              onClick={ colorStep }
+              disabled={ graph.coloredNodes.size === 0 || graph.coloredNodes.size === graph.nodes.length }
+            >Step</Button>
+          </span>
         </Tooltip>
         <Tooltip title="Clear coloring" placement="top">
-          <IconButton
-            variant="outlined"
-            color="primary"
-            size="small"
-            onClick={ graph.uncolorAllNodes }
-            disabled={ graph.coloredNodes.size === 0 }
-          ><ResetIcon fontSize="small" /></IconButton>
+          <span>
+            <IconButton
+              variant="outlined"
+              color="primary"
+              size="small"
+              onClick={ graph.uncolorAllNodes }
+              disabled={ graph.coloredNodes.size === 0 }
+            ><ResetIcon fontSize="small" /></IconButton>
+          </span>
         </Tooltip>
       </Stack>
     </Stack>

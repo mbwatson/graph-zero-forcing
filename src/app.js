@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { useGraph } from './context'
+import { useGraph } from './graph-context'
 import { Container, Stack } from '@mui/material'
 import { Graph } from './components/graph'
 import { ColorStepper } from './components/color-stepper'

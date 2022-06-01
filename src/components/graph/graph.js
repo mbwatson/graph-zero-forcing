@@ -4,7 +4,7 @@ import loadable from '@loadable/component'
 const ForceGraph2D = loadable(() => import('./force-graph'))
 import { SizeMe } from 'react-sizeme'
 import { useTheme } from '@mui/material'
-import { useGraph } from '../../context'
+import { useGraph } from '../../graph-context'
 
 export const Graph = ({ nodes, edges }) => {
   const theme = useTheme()
