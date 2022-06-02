@@ -4,6 +4,7 @@ import { useGraph } from './graph-context'
 import { Graph } from './components/graph'
 import { Toolbar } from './components/toolbar'
 import { Drawer } from './components/drawer'
+import { Footer } from './components/footer'
 
 export const App = () => {
   const { graph } = useGraph()
@@ -32,6 +33,8 @@ export const App = () => {
           )
         }
       </ReactResizeDetector>
+
+      <Footer />
 
     </Fragment>
   )
