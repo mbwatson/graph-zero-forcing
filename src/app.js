@@ -1,10 +1,6 @@
-import { Fragment, Suspense, useState } from 'react'
+import { Fragment, useState } from 'react'
 import ReactResizeDetector from 'react-resize-detector';
 import { useGraph } from './graph-context'
-import { AppBar, Box, Container, Dialog, IconButton, Tooltip,  } from '@mui/material'
-import {
-  Settings as SettingsIcon,
-} from '@mui/icons-material'
 import { Graph } from './components/graph'
 import { Toolbar } from './components/toolbar'
 import { Drawer } from './components/drawer'

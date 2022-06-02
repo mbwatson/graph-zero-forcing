@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import {
-  Drawer as MuiDrawer, DialogActions, DialogContent,
+  Drawer as MuiDrawer, CardContent,
   IconButton, useMediaQuery,
 } from '@mui/material'
 import {
@@ -15,24 +15,21 @@ export const Drawer = ({ open, closeHandler }) => {
       onClose={ closeHandler }
       anchor="top"
       sx={{ zIndex: 1 }}
-      PaperProps={{ style: { backgroundColor: '#eee' } }}
+      PaperProps={{
+        style: {
+          backgroundColor: '#eee',
+          paddingTop: '5rem',
+        }
+      }}
     >
-      <DialogActions sx={{ padding: '0.5rem 1rem', minWidth: '300px' }}>
-        <IconButton
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={ closeHandler }
-        ><CloseIcon /></IconButton>
-      </DialogActions>
-      <DialogContent>
+      <CardContent>
         <MatrixEditor />
-      </DialogContent>
+      </CardContent>
     </MuiDrawer>
   )
 }
 
 Drawer.propTypes = {
-  open: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
 }
