@@ -56,7 +56,7 @@ export const MatrixEditor = () => {
 
   const handleSelectPresetMatrix = event => {
     setShowResetButton(true)
-    setTextContent(matrixToInput(matrices[event.target.value].data))
+    setTextContent(matrixToInput(matrices[event.target.value]))
   }
 
   return (
