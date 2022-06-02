@@ -84,7 +84,7 @@ export const MatrixEditor = () => {
           justifyContent: 'flex-end',
         }}>
           <select onChange={ handleSelectPresetMatrix }>
-            <option key={ `matrix-option-none` } value="">Select preset graph...</option>
+            <option key={ `matrix-option-none` } value="">Select preset matrix...</option>
             {
               Object.keys(matrices).map(name => (
                 <option
