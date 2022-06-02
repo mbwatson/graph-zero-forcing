@@ -30,6 +30,6 @@ export const Drawer = ({ open, closeHandler }) => {
 }
 
 Drawer.propTypes = {
-  open: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
 }
