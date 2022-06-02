@@ -19,7 +19,7 @@ export const Toolbar = ({ toggleDrawer }) => {
         alignItems="center"
         justifyContent="space-between"
         sx={{
-          padding: '0.5rem 1rem',
+          padding: '1rem',
           position: 'relative',
           '&::before': {
             position: 'absolute',
