@@ -60,10 +60,10 @@ export const GraphProvider = ({ children }) => {
   const uncolorAllNodes = () => setColoredNodes(new Set())
 
   const neighbors = useCallback(i => {
-    let neighbors = []
+    let neighbors = new Set([i])
     adjMatrix.data[i].forEach((entry, j) => {
       if (entry === 1) {
-        neighbors.push(j)
+        neighbors.add(j)
       }
     })
     return neighbors
@@ -72,7 +72,7 @@ export const GraphProvider = ({ children }) => {
   const colorStep = useCallback(() => {
     const nextColoredNodes = new Set();
     [...coloredNodes].forEach(i => {
-      const uncoloredNeighbors = neighbors(i).filter(i =>  !coloredNodes.has(i))
+      const uncoloredNeighbors = [...neighbors(i)].filter(i =>  !coloredNodes.has(i))
       if (uncoloredNeighbors.length === 1) {
         nextColoredNodes.add(uncoloredNeighbors[0])
       }
@@ -89,6 +89,7 @@ export const GraphProvider = ({ children }) => {
         coloredNodes,
         toggleNodeColor,
         uncolorAllNodes,
+        neighbors,
       },
       colorStep,
       adjMatrix,
