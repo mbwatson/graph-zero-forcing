@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Box, Button, FormControl, IconButton, InputLabel, MenuItem, Select, Stack, TextField, Tooltip, Typography } from '@mui/material'
+import { Box, Button, IconButton, Stack, TextField, Tooltip, Typography } from '@mui/material'
 import {
   RestartAlt as ResetIcon,
 } from '@mui/icons-material'
@@ -14,14 +14,11 @@ const inputToMatrix = input => input
     .map(x => parseInt(x))
   )
 
-const fontSizes = [...Array(14).keys()].map(x => x + 7)
-
 export const MatrixEditor = () => {
   const { graph, adjMatrix, setAdjMatrix } = useGraph()
   const textElement = useRef()
   const [textContent, setTextContent] = useState(matrixToInput(adjMatrix.data))
   const [error, setError] = useState(null)
-  const [fontSize, setFontSize] = useState(12)
   const [showResetButton, setShowResetButton] = useState(false)
 
   const handleClickValidate = () => {
@@ -51,10 +48,6 @@ export const MatrixEditor = () => {
     setTextContent(event.target.value)
   }
 
-  const handleChangeFontSize = event => {
-    setFontSize(event.target.value)
-  }
-
   const handleClickResetMatrix = () => {
     setShowResetButton(false)
     setTextContent(matrixToInput(adjMatrix.data))
@@ -63,6 +56,7 @@ export const MatrixEditor = () => {
   return (
     <Stack spacing={ 2 } alignItems="stretch">
       <Stack direction="row" justifyContent="space-between" spacing={ 2 }>
+
         <Stack direction="row" spacing={ 2 } alignItems="center">
           <Typography component={ Stack } justifyContent="center">
             ADJACENCY MATRIX
@@ -79,22 +73,8 @@ export const MatrixEditor = () => {
             )
           }
         </Stack>
-        <Stack direction="row" spacing={ 2 }>
-          <FormControl>
-            <InputLabel id="font-size-select-label">Font size</InputLabel>
-            <Select value={ fontSize } onChange={ handleChangeFontSize } size="small" label="Font size" sx={{ width: '80px' }}>
-              {
-                fontSizes.map(size => (
-                  <MenuItem
-                    key={ `font-size-option-${ size }` }
-                    value={ size }
-                  >{ `${ size }pt` }</MenuItem>
-                ))
-              }
-            </Select>
-          </FormControl>
-        </Stack>
       </Stack>
+      
       <Box>
         <TextField
           ref={ textElement }
@@ -103,18 +83,19 @@ export const MatrixEditor = () => {
           value={ textContent }
           onChange={ handleChangeText }
           maxRows={ 30 }
-          inputProps={{ sx: { fontSize, fontFamily: 'monospace', lineHeight: 1 } }}
+          inputProps={{ sx: { fontFamily: 'monospace', lineHeight: 1 } }}
         />
-        <br /><br />
+        <br />
+        {
+          error && <Typography color="darkred">{ error.message }</Typography>
+        }
+        <br />
         <Button
           fullWidth
           variant="contained"
           onClick={ handleClickValidate }
         >Generate Graph</Button>
       </Box>
-      {
-        error && <Typography color="darkred">{ error.message }</Typography>
-      }
     </Stack>
   )
 }

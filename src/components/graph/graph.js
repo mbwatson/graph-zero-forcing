@@ -2,11 +2,10 @@ import { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 const ForceGraph2D = loadable(() => import('./force-graph'))
-import { SizeMe } from 'react-sizeme'
 import { useTheme } from '@mui/material'
 import { useGraph } from '../../graph-context'
 
-export const Graph = ({ nodes, edges }) => {
+export const Graph = ({ nodes, edges, height, width }) => {
   const theme = useTheme()
   const { graph } = useGraph()
 
@@ -21,28 +20,24 @@ export const Graph = ({ nodes, edges }) => {
   : '#a7b4cd', [graph.coloredNodes])
 
   return (
-    <SizeMe>
-      {
-        ({ size }) => (
-          <ForceGraph2D
-            width={ size.width }
-            height={ 600 }
-            graphData={{ nodes, links: edges }}
-            enablePointerInteraction={ true }
-            onNodeClick={ handleClickNode }
-            nodeColor={ nodeColor }
-            linkColor={ () => '#aaa' }
-            linkWidth={ 1 }
-            linkOpacity="1.0"
-            nodeLabel={ node => `${ node.id }` }
-          />
-        )
-      }
-    </SizeMe>
+    <ForceGraph2D
+      height={ height }
+      width={ width }
+      graphData={{ nodes, links: edges }}
+      enablePointerInteraction={ true }
+      onNodeClick={ handleClickNode }
+      nodeColor={ nodeColor }
+      linkColor={ () => '#aaa' }
+      linkWidth={ 1 }
+      linkOpacity="1.0"
+      nodeLabel={ node => `${ node.id }` }
+    />
   )
 }
 
 Graph.propTypes = {
   nodes: PropTypes.array.isRequired,
   edges: PropTypes.array.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
 }

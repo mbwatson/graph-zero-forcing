@@ -1,24 +1,41 @@
-import { Fragment } from 'react'
+import { Fragment, Suspense, useState } from 'react'
+import ReactResizeDetector from 'react-resize-detector';
 import { useGraph } from './graph-context'
-import { Container, Stack } from '@mui/material'
+import { AppBar, Box, Container, Dialog, IconButton, Tooltip,  } from '@mui/material'
+import {
+  Settings as SettingsIcon,
+} from '@mui/icons-material'
 import { Graph } from './components/graph'
-import { ColorStepper } from './components/color-stepper'
-import { MatrixEditor } from './components/matrix-editor'
+import { Toolbar } from './components/toolbar'
+import { Drawer } from './components/drawer'
 
 export const App = () => {
   const { graph } = useGraph()
+  const [dialogOpen, setDialogOpen] = useState(false)
+
+  const toggleDrawer = () => setDialogOpen(!dialogOpen)
 
   return (
     <Fragment>
-      <Graph nodes={ graph.nodes } edges={ graph.edges } />
+      <Toolbar toggleDrawer={ toggleDrawer } />
 
-      <Stack sx={{ backgroundColor: '#a7b4cd'}}>
-        <ColorStepper />
-      </Stack>
+      <Drawer
+        open={ dialogOpen }
+        closeHandler={ () => setDialogOpen(false) }
+      />
 
-      <Container maxWidth="lg" sx={{ padding: '2rem 1rem' }}>
-        <MatrixEditor />
-      </Container>
+      <ReactResizeDetector handleWidth handleheight>
+        {
+          ({ width, height }) => (
+            <Graph
+              width={ width }
+              height={ height }
+              nodes={ graph.nodes }
+              edges={ graph.edges }
+            />
+          )
+        }
+      </ReactResizeDetector>
 
     </Fragment>
   )
