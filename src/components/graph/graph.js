@@ -39,7 +39,7 @@ export const Graph = ({ nodes, edges, height, width }) => {
     context.fill()
   }, [activeNode])
 
-  const handleHoverNode = useCallback((node, prevNode) => {
+  const handleHoverNode = useCallback((node, ) => {
     if (node) {
       setActiveNode(node.id)
     } else {
