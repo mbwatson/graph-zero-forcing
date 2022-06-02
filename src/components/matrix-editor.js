@@ -5,6 +5,7 @@ import {
 } from '@mui/icons-material'
 import { useGraph } from '../graph-context'
 import { Matrix } from 'ml-matrix'
+import matrices from '../lib/matrices'
 
 const matrixToInput = m => m.map(row => row.join()).join('\n')
 const inputToMatrix = input => input
@@ -53,6 +54,11 @@ export const MatrixEditor = () => {
     setTextContent(matrixToInput(adjMatrix.data))
   }
 
+  const handleSelectPresetMatrix = event => {
+    setShowResetButton(true)
+    setTextContent(matrixToInput(matrices[event.target.value]))
+  }
+
   return (
     <Stack spacing={ 2 } alignItems="stretch">
       <Stack direction="row" justifyContent="space-between" spacing={ 2 }>
@@ -73,6 +79,22 @@ export const MatrixEditor = () => {
             )
           }
         </Stack>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}>
+          <select onChange={ handleSelectPresetMatrix }>
+            <option key={ `matrix-option-none` } value="">Select preset matrix...</option>
+            {
+              Object.keys(matrices).map(name => (
+                <option
+                  key={ `matrix-option-${ name }` }
+                  value={ name }
+                >{ name }</option>
+              ))
+            }
+          </select>
+        </Box>
       </Stack>
       
       <Box>
