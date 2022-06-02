@@ -102,10 +102,10 @@ export const MatrixEditor = () => {
           ref={ textElement }
           multiline
           fullWidth
+          rows={ Math.min(20, textContent.split('\n').length) }
           value={ textContent }
           onChange={ handleChangeText }
-          maxRows={ 30 }
-          inputProps={{ sx: { fontFamily: 'monospace', lineHeight: 1 } }}
+          inputProps={{ sx: { fontFamily: 'monospace', lineHeight: 1.5, fontSize: '75%' } }}
         />
         <br />
         {
