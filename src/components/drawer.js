@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types'
 import {
   Drawer as MuiDrawer, CardContent,
-  IconButton, useMediaQuery,
 } from '@mui/material'
-import {
-  Close as CloseIcon,
-} from '@mui/icons-material'
 import { MatrixEditor } from './matrix-editor'
 
 export const Drawer = ({ open, closeHandler }) => {
