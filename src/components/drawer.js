@@ -15,6 +15,7 @@ export const Drawer = ({ open, closeHandler }) => {
         style: {
           backgroundColor: '#eee',
           paddingTop: '5rem',
+          margin: '0 3rem',
         }
       }}
     >

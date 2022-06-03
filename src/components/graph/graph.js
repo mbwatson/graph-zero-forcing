@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { useTheme } from '@mui/material'
@@ -9,6 +9,7 @@ const ForceGraph2D = loadable(() => import('./force-graph'))
 export const Graph = ({ nodes, edges, height, width }) => {
   const theme = useTheme()
   const { graph } = useGraph()
+  const fgRef = useRef()
 
   // "active" here indicates it's being hovered
   const [activeNode, setActiveNode] = useState(null)
@@ -39,7 +40,7 @@ export const Graph = ({ nodes, edges, height, width }) => {
     context.fill()
   }, [activeNode])
 
-  const handleHoverNode = useCallback((node, prevNode) => {
+  const handleHoverNode = useCallback((node, ) => {
     if (node) {
       setActiveNode(node.id)
     } else {
@@ -51,8 +52,23 @@ export const Graph = ({ nodes, edges, height, width }) => {
     return highlightedNodes.has(node.id) ? 'before' : undefined
   }, [highlightedNodes])
 
+  useEffect(() => {
+    if (!fgRef.current) {
+      return
+    }
+    const handleKeyPress = event => {
+      if (event.keyCode === 70) {
+        fgRef.current.zoomToFit(250)
+      }
+    }
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
+  }, [fgRef.current])
+
+
   return (
     <ForceGraph2D
+      ref={ fgRef }
       height={ height }
       width={ width }
       graphData={{ nodes, links: edges }}
@@ -62,8 +78,6 @@ export const Graph = ({ nodes, edges, height, width }) => {
       linkColor={ () => '#aaa' }
       nodeCanvasObjectMode={ nodedHighlightPlacement }
       nodeCanvasObject={ nodeHighlight }
-      onNodeHover={ handleHoverNode }
-      onNodeDrag={ handleHoverNode }
       linkWidth={ 1 }
       linkOpacity="1.0"
       nodeLabel={ node => `${ node.id }` }
