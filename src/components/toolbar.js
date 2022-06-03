@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { AppBar, Button, IconButton, Stack, Tooltip, Typography } from '@mui/material'
+import { AppBar, Button, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import {
   Check as CheckIcon,
   RestartAlt as ResetIcon,
@@ -9,6 +9,7 @@ import {
 import { useGraph } from '../graph-context'
 
 export const Toolbar = ({ toggleDrawer }) => {
+  const theme = useTheme()
   const { colorStep, graph } = useGraph()
 
   return (
@@ -21,6 +22,7 @@ export const Toolbar = ({ toggleDrawer }) => {
         sx={{
           padding: '1rem',
           position: 'relative',
+          backgroundColor: theme.palette.grey[900],
           '&::before': {
             position: 'absolute',
             left: '1rem',
@@ -39,11 +41,16 @@ export const Toolbar = ({ toggleDrawer }) => {
           <Typography component={ Stack } justifyContent="center">
             { graph.coloredNodes.size } of { graph.nodes.length } colored nodes:
           </Typography>
-          <code>{ `{${ [...graph.coloredNodes].join(', ') }}` }</code>
+          <Typography component="code" sx={{
+            backgroundColor: theme.palette.common.black,
+            fontFamily: 'monospace',
+          }}>
+            { `{${ [...graph.coloredNodes].join(', ') }}` }
+          </Typography>
           {
             graph.coloredNodes.size === graph.nodes.length && (
               <Tooltip title="All nodes are colored!" placement="bottom">
-                <CheckIcon color="success" />
+                <CheckIcon color="secondary" />
               </Tooltip>
             )
           }

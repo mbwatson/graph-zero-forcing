@@ -1,7 +1,10 @@
 import { useRef, useState } from 'react'
-import { Box, Button, IconButton, Stack, TextField, Tooltip, Typography } from '@mui/material'
+import {
+  Box, Button, IconButton, Menu, MenuItem, Stack, TextField, Tooltip, Typography
+} from '@mui/material'
 import {
   RestartAlt as ResetIcon,
+  KeyboardArrowDown as MenuOpenIcon,
 } from '@mui/icons-material'
 import { useGraph } from '../graph-context'
 import { Matrix } from 'ml-matrix'
@@ -21,6 +24,8 @@ export const MatrixEditor = () => {
   const [textContent, setTextContent] = useState(matrixToInput(adjMatrix.data))
   const [error, setError] = useState(null)
   const [showResetButton, setShowResetButton] = useState(false)
+  const [menuAnchorEl, setMenuAnchorEl] = useState(null)
+  const menuOpen = Boolean(menuAnchorEl)
 
   const handleClickValidate = () => {
     setError(null)
@@ -54,10 +59,14 @@ export const MatrixEditor = () => {
     setTextContent(matrixToInput(adjMatrix.data))
   }
 
-  const handleSelectPresetMatrix = event => {
+  const handleSelectPresetMatrix = graphName => () => {
     setShowResetButton(true)
-    setTextContent(matrixToInput(matrices[event.target.value]))
+    handleCloseMenu()
+    setTextContent(matrixToInput(matrices[graphName]))
   }
+
+  const handleClickOpenMenu = event => setMenuAnchorEl(event.target)
+  const handleCloseMenu = () => setMenuAnchorEl(null)
 
   return (
     <Stack spacing={ 2 } alignItems="stretch">
@@ -83,17 +92,28 @@ export const MatrixEditor = () => {
           display: 'flex',
           justifyContent: 'flex-end',
         }}>
-          <select onChange={ handleSelectPresetMatrix }>
-            <option key={ `matrix-option-none` } value="">Select preset matrix...</option>
+          <Button
+            variant="outlined"
+            onClick={ handleClickOpenMenu }
+            endIcon={ <MenuOpenIcon /> }
+          >preset matrix</Button>
+          <Menu
+            value=""
+            onChange={ handleSelectPresetMatrix }
+            anchorEl={ menuAnchorEl }
+            open={ menuOpen }
+            onClose={ handleCloseMenu }
+          >
             {
               Object.keys(matrices).map(name => (
-                <option
+                <MenuItem
                   key={ `matrix-option-${ name }` }
-                  value={ name }
-                >{ name }</option>
+                  onClick={ handleSelectPresetMatrix(name) }
+                  sx={{ width: '172px' }}
+                >{ name }</MenuItem>
               ))
             }
-          </select>
+          </Menu>
         </Box>
       </Stack>
       
