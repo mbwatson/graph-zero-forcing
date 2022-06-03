@@ -78,9 +78,6 @@ export const Graph = ({ nodes, edges, height, width }) => {
       linkColor={ () => '#aaa' }
       nodeCanvasObjectMode={ nodedHighlightPlacement }
       nodeCanvasObject={ nodeHighlight }
-      onNodeHover={ handleHoverNode }
-      onNodeDrag={ handleHoverNode }
-      onNodeDragEnd={ () => setActiveNode(null) }
       linkWidth={ 1 }
       linkOpacity="1.0"
       nodeLabel={ node => `${ node.id }` }
