@@ -21,8 +21,8 @@ export const Graph = ({ nodes, edges, height, width }) => {
   const nodeColor = useCallback(node => graph.coloredNodes.size
     ? graph.coloredNodes.has(node.id)
       ? theme.palette.secondary.dark
-      : '#a7b4cd'
-  : '#a7b4cd', [graph.coloredNodes])
+      : '#b7c4dd'
+  : '#b7c4dd', [graph.coloredNodes])
 
   // const highlightedNodes = useMemo(() => {
   //   return activeNode !== null
