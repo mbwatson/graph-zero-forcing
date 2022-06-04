@@ -25,7 +25,6 @@ export const GraphProvider = ({ children }) => {
   const [coloredNodes, setColoredNodes] = useState(new Set())
   const [color, setColor] = useState('#a14f92')
   const [nodeSize, setNodeSize] = useState(4)
-  console.log(nodeSize)
   
   useEffect(() => {
     setNodes([...Array(adjMatrix.rows).keys()].map(i => ({ id: i })))
