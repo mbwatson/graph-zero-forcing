@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { Box, Button, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import {
   CheckCircle as CheckIcon,
+  Circle as CircleIcon,
   Undo as ResetIcon,
   SkipNext as StepIcon,
 } from '@mui/icons-material'
@@ -28,16 +29,16 @@ export const Colorbar = () => {
       alignItems: 'center',
     }}>
       <Stack spacing={ 2 } direction="row" alignItems="center">
-        <Typography component={ Stack } justifyContent="center" color="secondary">
-          { graph.coloredNodes.size } of { graph.nodes.length } colored nodes
-        </Typography>
         {
-          graph.coloredNodes.size === graph.nodes.length && (
+          graph.coloredNodes.size === graph.nodes.length ? (
             <Tooltip title="All nodes are colored!" placement="bottom">
               <CheckIcon color="secondary" />
             </Tooltip>
-          )
+          ) : <CircleIcon sx={{ color: '#8888' }} />
         }
+        <Typography component={ Stack } justifyContent="center" color="secondary">
+          { graph.coloredNodes.size } of { graph.nodes.length } colored nodes
+        </Typography>
       </Stack>
       <Stack spacing={ 2 } direction="row">
         <Tooltip title="Reset coloring" placement="top">
