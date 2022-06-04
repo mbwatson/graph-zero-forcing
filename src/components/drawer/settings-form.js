@@ -1,4 +1,4 @@
-import { CardContent, FormControl, FormLabel, Slider, Stack } from '@mui/material'
+import { Box, FormControl, FormLabel, Slider, Stack } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
 import { useGraph } from '../../graph-context'
 
@@ -6,7 +6,7 @@ export const SettingsForm = () => {
   const { graph } = useGraph()
 
   return (
-    <CardContent>
+    <Box>
       <Stack direction="column" spacing={ 4 }>
 
         <FormControl sx={{ flexDirection: 'row', gap: '1rem' }}>
@@ -37,6 +37,6 @@ export const SettingsForm = () => {
         </FormControl>
 
       </Stack>
-    </CardContent>
+    </Box>
   )
 }
