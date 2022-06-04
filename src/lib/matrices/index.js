@@ -1,3 +1,4 @@
+import { Balaban11Cage } from './balaban11cage'
 import { BidiakisCube } from './bidiakis-cube'
 import { BuckyBall } from './buckyball'
 import { BullGraph } from './bull-graph'
@@ -6,6 +7,7 @@ import { GossetGraph } from './gosset-graph'
 import { McGeeGraph } from './mcgee-graph'
 
 export default {
+  Balaban11Cage,
   BidiakisCube,
   BuckyBall,
   BullGraph,
