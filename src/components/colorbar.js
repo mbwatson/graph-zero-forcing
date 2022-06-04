@@ -31,6 +31,10 @@ export const Colorbar = () => {
       position: 'absolute',
       boxSizing: 'border-box',
       backgroundColor: '#3333',
+      transition: 'background-color 250ms',
+      '&:hover': {
+        backgroundColor: '#3336',
+      },
       padding: theme.spacing(2),
       color: theme.palette.primary.main,
       zIndex: 9,
@@ -40,14 +44,16 @@ export const Colorbar = () => {
       ...conditionalStyles,
     }}>
       <Stack spacing={ 2 } direction="row" alignItems="center">
-        {
-          graph.coloredNodes.size === graph.nodes.length ? (
-            <Tooltip title="All nodes are colored!" placement="bottom">
-              <CheckIcon color="secondary" />
-            </Tooltip>
-          ) : <CircleIcon sx={{ color: '#8888' }} />
-        }
-        <Typography component={ Stack } justifyContent="center" color="secondary">
+        <Box sx={{ width: '35px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {
+            graph.coloredNodes.size === graph.nodes.length ? (
+              <Tooltip title="All nodes are colored!" placement="bottom">
+                <CheckIcon sx={{ color: '#fff' }} fontSize="medium" />
+              </Tooltip>
+            ) : <CircleIcon sx={{ color: '#8888' }} fontSize="small" />
+          }
+        </Box>
+        <Typography component={ Stack } justifyContent="center" color="#fff">
           { graph.coloredNodes.size } of { graph.nodes.length } colored nodes
         </Typography>
       </Stack>

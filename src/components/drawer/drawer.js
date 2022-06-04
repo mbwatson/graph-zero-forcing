@@ -2,10 +2,11 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   CardContent, Drawer as MuiDrawer,
-  Tab, Tabs, useTheme,
+  Tab, Tabs, useMediaQuery, useTheme,
 } from '@mui/material'
 import { MatrixEditor } from './matrix-editor'
 import { SettingsForm } from './settings-form'
+import { About } from './about'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -16,6 +17,7 @@ function TabPanel(props) {
       hidden={ value !== index }
       id={ `config-tabpanel-${ index }` }
       aria-labelledby={`config-tab-${ index }`}
+      style={{ padding: '1rem' }}
       { ...other }
     >
       { value === index && children }
@@ -35,6 +37,7 @@ TabPanel.propTypes = {
 export const Drawer = ({ open, closeHandler }) => {
   const theme = useTheme()
   const [currentTab, setCurrentTab] = useState(0)
+  const compact = useMediaQuery('(max-width: 600px)')
 
   const handleClickTab = (event, newTab) => {
     setCurrentTab(newTab)
@@ -50,14 +53,20 @@ export const Drawer = ({ open, closeHandler }) => {
         style: {
           backgroundColor: '#eee',
           paddingTop: theme.spacing(9),
-          margin: '0 1rem',
+          margin: compact ? 0 : '0 1rem',
         }
       }}
     >
       <CardContent>
-        <Tabs value={ currentTab } onChange={ handleClickTab } aria-label="settings tabs">
+        <Tabs
+          aria-label="settings tabs"
+          value={ currentTab }
+          onChange={ handleClickTab }
+          variant="scrollable"
+        >
           <Tab label="Adjacency Matrix" />
           <Tab label="Graph Settings" />
+          <Tab label="About" />
         </Tabs>
         <br />
         <TabPanel value={ currentTab } index={ 0 }>
@@ -65,6 +74,9 @@ export const Drawer = ({ open, closeHandler }) => {
         </TabPanel>
         <TabPanel value={ currentTab } index={ 1 }>
           <SettingsForm />
+        </TabPanel>
+        <TabPanel value={ currentTab } index={ 2 }>
+          <About />
         </TabPanel>
       </CardContent>
     </MuiDrawer>

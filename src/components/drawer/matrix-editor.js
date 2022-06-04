@@ -6,9 +6,9 @@ import {
   RestartAlt as ResetIcon,
   KeyboardArrowDown as MenuOpenIcon,
 } from '@mui/icons-material'
-import { useGraph } from '../graph-context'
+import { useGraph } from '../../graph-context'
 import { Matrix } from 'ml-matrix'
-import matrices from '../lib/matrices'
+import matrices from '../../lib/matrices'
 
 const matrixToInput = m => m.map(row => row.join()).join('\n')
 const inputToMatrix = input => input
