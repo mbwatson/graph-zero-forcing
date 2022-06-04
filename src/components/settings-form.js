@@ -1,4 +1,4 @@
-import { Button, CardContent, Typography } from '@mui/material'
+import { CardContent, Typography } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
 import { useGraph } from '../graph-context'
 

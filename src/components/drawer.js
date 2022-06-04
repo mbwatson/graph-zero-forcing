@@ -48,8 +48,8 @@ export const Drawer = ({ open, closeHandler }) => {
       PaperProps={{
         style: {
           backgroundColor: '#eee',
-          paddingTop: '5rem',
-          margin: '0 3rem',
+          paddingTop: '3rem',
+          margin: '0 1rem',
         }
       }}
     >
