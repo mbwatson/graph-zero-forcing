@@ -37,7 +37,7 @@ export const Graph = ({ nodes, edges, height, width }) => {
     context.beginPath()
     context.arc(x, y, 5, 0, 2 * Math.PI, false)
     context.lineWidth = 1
-    context.strokeStyle = theme.palette.primary.light
+    context.strokeStyle = theme.palette.grey[800]
     context.stroke()
     context.fill()
   }, [graph.coloredNodes, graph.settings.color])
@@ -78,8 +78,8 @@ export const Graph = ({ nodes, edges, height, width }) => {
       nodeColor={ nodeColor }
       nodeCanvasObject={ nodeCanvasObject }
       onNodeClick={ handleClickNode }
-      linkColor={ () => '#555' }
-      linkWidth={ 1 }
+      linkColor={ () => theme.palette.grey[500] }
+      linkWidth={ 2 }
       nodeLabel={ node => `${ node.id }` }
       autoPauseRedraw={ false }
     />
