@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   CardContent, Drawer as MuiDrawer,
-  Tab, Tabs, 
+  Tab, Tabs, useTheme,
 } from '@mui/material'
 import { MatrixEditor } from './matrix-editor'
 import { SettingsForm } from './settings-form'
@@ -33,6 +33,7 @@ TabPanel.propTypes = {
 //
 
 export const Drawer = ({ open, closeHandler }) => {
+  const theme = useTheme()
   const [currentTab, setCurrentTab] = useState(0)
 
   const handleClickTab = (event, newTab) => {
@@ -48,7 +49,7 @@ export const Drawer = ({ open, closeHandler }) => {
       PaperProps={{
         style: {
           backgroundColor: '#eee',
-          paddingTop: '3rem',
+          paddingTop: theme.spacing(9),
           margin: '0 1rem',
         }
       }}
@@ -58,6 +59,7 @@ export const Drawer = ({ open, closeHandler }) => {
           <Tab label="Adjacency Matrix" />
           <Tab label="Graph Settings" />
         </Tabs>
+        <br />
         <TabPanel value={ currentTab } index={ 0 }>
           <MatrixEditor />
         </TabPanel>
