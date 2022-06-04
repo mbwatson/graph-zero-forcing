@@ -40,7 +40,7 @@ export const Colorbar = () => {
         }
       </Stack>
       <Stack spacing={ 1 } direction="row">
-        <Tooltip title="Clear coloring" placement="top">
+        <Tooltip title="Reset coloring" placement="top">
           <span>
             <IconButton
               color="secondary"
