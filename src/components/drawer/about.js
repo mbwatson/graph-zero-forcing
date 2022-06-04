@@ -22,7 +22,7 @@ export const About = () => {
           neighbor causes that neighbor to be colored.
           A <em>zero forcing set</em> is a set of initially colored vertices which,
           after iteratively applying the coloring rule, eventually colors the entire graph.
-          Of particular interest, is identifying <em>minimal</em>zero forcing sets.
+          Of particular interest, is identifying <em>minimal</em> zero forcing sets.
         </Typography>
       </Box>
 
