@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useLocalStorage } from './hooks'
 import { Matrix } from 'ml-matrix'
 
 const initialGraph = new Matrix([
@@ -23,8 +24,8 @@ export const GraphProvider = ({ children }) => {
   const [nodes, setNodes] = useState([])
   const [edges, setEdges] = useState([])
   const [coloredNodes, setColoredNodes] = useState(new Set())
-  const [color, setColor] = useState('#a14f92')
-  const [nodeSize, setNodeSize] = useState(4)
+  const [color, setColor] = useLocalStorage('node-color', '#a14f92')
+  const [nodeSize, setNodeSize] = useLocalStorage('node-size', 4)
   
   useEffect(() => {
     setNodes([...Array(adjMatrix.rows).keys()].map(i => ({ id: i })))
