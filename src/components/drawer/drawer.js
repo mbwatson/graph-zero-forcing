@@ -6,6 +6,7 @@ import {
 } from '@mui/material'
 import { MatrixEditor } from './matrix-editor'
 import { SettingsForm } from './settings-form'
+import { About } from './about'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -58,6 +59,7 @@ export const Drawer = ({ open, closeHandler }) => {
         <Tabs value={ currentTab } onChange={ handleClickTab } aria-label="settings tabs">
           <Tab label="Adjacency Matrix" />
           <Tab label="Graph Settings" />
+          <Tab label="About" />
         </Tabs>
         <br />
         <TabPanel value={ currentTab } index={ 0 }>
@@ -65,6 +67,9 @@ export const Drawer = ({ open, closeHandler }) => {
         </TabPanel>
         <TabPanel value={ currentTab } index={ 1 }>
           <SettingsForm />
+        </TabPanel>
+        <TabPanel value={ currentTab } index={ 2 }>
+          <About />
         </TabPanel>
       </CardContent>
     </MuiDrawer>

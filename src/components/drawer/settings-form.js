@@ -1,6 +1,6 @@
 import { CardContent, FormControl, FormLabel, Slider, Stack } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
-import { useGraph } from '../graph-context'
+import { useGraph } from '../../graph-context'
 
 export const SettingsForm = () => {
   const { graph } = useGraph()
@@ -13,7 +13,7 @@ export const SettingsForm = () => {
           <FormLabel>Node Size</FormLabel>
           <Slider
             aria-label="Node size"
-            step={ 1 } marks min={ 1 } max={ 10 }
+            step={ 1 } marks min={ 1 } max={ 20 }
             valueLabelDisplay="on"
             getAriaValueText={ () => `${ graph.settings.nodeSize } px node radius` }
             value={ graph.settings.nodeSize }

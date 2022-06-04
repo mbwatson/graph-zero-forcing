@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { AppBar, IconButton, Stack, Tooltip, useTheme } from '@mui/material'
 import {
+  Close as CloseDrawerIcon,
   Settings as SettingsIcon,
 } from '@mui/icons-material'
 
@@ -25,7 +26,7 @@ export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
             size="small"
             onClick={ toggleDrawer }
             sx={{ color: drawerOpen ? theme.palette.primary.main : '#eee' }}
-          ><SettingsIcon fontSize="small" /></IconButton>
+          >{ drawerOpen ? <CloseDrawerIcon /> : <SettingsIcon /> }</IconButton>
         </Tooltip>
       </Stack>
     </AppBar>
