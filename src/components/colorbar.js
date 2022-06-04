@@ -1,5 +1,6 @@
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { Box, Button, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
+import { Box, Button, IconButton, Stack, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material'
 import {
   CheckCircle as CheckIcon,
   Circle as CircleIcon,
@@ -11,22 +12,32 @@ import { useGraph } from '../graph-context'
 export const Colorbar = () => {
   const theme = useTheme()
   const { colorStep, graph } = useGraph()
+  const compact = useMediaQuery('(max-width: 600px)')
+
+  const conditionalStyles = useMemo(() => compact ? ({
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      borderRadius: 0,
+    }) : ({
+      bottom: '2rem',
+      left: '2rem',
+      width: 'calc(100% - 4rem)',
+      borderRadius: theme.shape.borderRadius / 2,  
+    }), [compact])
 
   return (
     <Box sx={{
       position: 'absolute',
-      bottom: '2rem',
-      left: '2rem',
-      width: 'calc(100% - 4rem)',
       boxSizing: 'border-box',
       backgroundColor: '#3333',
       padding: theme.spacing(2),
-      borderRadius: theme.shape.borderRadius / 2,
       color: theme.palette.primary.main,
       zIndex: 9,
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
+      ...conditionalStyles,
     }}>
       <Stack spacing={ 2 } direction="row" alignItems="center">
         {
