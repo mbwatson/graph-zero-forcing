@@ -11,9 +11,6 @@ export const Graph = ({ nodes, edges, height, width }) => {
   const { graph } = useGraph()
   const fgRef = useRef()
 
-  // "active" here indicates it's being hovered
-  // const [activeNode, setActiveNode] = useState(null)
-
   const handleClickNode = useCallback((node, ) => {
     graph.toggleNodeColor(node.id)
   }, [graph.coloredNodes])
@@ -24,35 +21,24 @@ export const Graph = ({ nodes, edges, height, width }) => {
       : '#888'
   : '#888', [graph.coloredNodes])
 
-  // const highlightedNodes = useMemo(() => {
-  //   return activeNode !== null
-  //     ? graph.neighbors(activeNode)
-  //     : new Set()
-  // }, [activeNode])
-
   const nodeCanvasObject = useCallback(({ x, y, id }, context) => {
     context.fillStyle = graph.coloredNodes.has(id)
       ? graph.settings.color
       : '#fff'
     context.beginPath()
-    context.arc(x, y, 5, 0, 2 * Math.PI, false)
+    context.arc(x, y, graph.settings.nodeSize, 0, 2 * Math.PI, false)
     context.lineWidth = 1
-    context.strokeStyle = theme.palette.primary.light
+    context.strokeStyle = theme.palette.grey[800]
     context.stroke()
     context.fill()
-  }, [graph.coloredNodes, graph.settings.color])
+  }, [graph.coloredNodes, graph.settings])
 
-  // const handleHoverNode = useCallback((node, ) => {
-  //   if (node) {
-  //     setActiveNode(node.id)
-  //   } else {
-  //     setActiveNode(null)
-  //   }
-  // }, [])
-
-  // const nodedHighlightPlacement = useCallback(node => {
-  //   return highlightedNodes.has(node.id) ? 'before' : undefined
-  // }, [highlightedNodes])
+  const nodePaint = ({ x, y }, color, context) => {
+    context.fillStyle = color
+    context.beginPath()
+    context.arc(x, y, graph.settings.nodeSize, 0, 2 * Math.PI, false)
+    context.fill()
+  }
 
   useEffect(() => {
     if (!fgRef.current) {
@@ -75,11 +61,12 @@ export const Graph = ({ nodes, edges, height, width }) => {
       width={ width }
       graphData={{ nodes, links: edges }}
       enablePointerInteraction={ true }
+      nodePointerAreaPaint={ nodePaint }
       nodeColor={ nodeColor }
       nodeCanvasObject={ nodeCanvasObject }
       onNodeClick={ handleClickNode }
-      linkColor={ () => '#555' }
-      linkWidth={ 1 }
+      linkColor={ () => theme.palette.grey[500] }
+      linkWidth={ 2 }
       nodeLabel={ node => `${ node.id }` }
       autoPauseRedraw={ false }
     />
