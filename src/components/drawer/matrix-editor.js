@@ -77,6 +77,7 @@ export const MatrixEditor = () => {
           width: '100%',
           gap: '1rem',
         }}>
+          <Typography variant="h2" sx={{ flex: 1, fontSize: '135%' }}>Adjacency Matrix</Typography>
           {
             showResetButton && (
               <Tooltip title="Reset matrix" placement="left">
@@ -92,7 +93,7 @@ export const MatrixEditor = () => {
             variant="outlined"
             onClick={ handleClickOpenMenu }
             endIcon={ <MenuOpenIcon /> }
-          >preset matrix</Button>
+          >Presets</Button>
           <Menu
             value=""
             onChange={ handleSelectPresetMatrix }
@@ -105,7 +106,6 @@ export const MatrixEditor = () => {
                 <MenuItem
                   key={ `matrix-option-${ name }` }
                   onClick={ handleSelectPresetMatrix(name) }
-                  sx={{ width: '172px' }}
                 >{ name }</MenuItem>
               ))
             }

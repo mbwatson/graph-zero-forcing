@@ -16,12 +16,12 @@ export const About = () => {
           particularly as it relates to the inverse eigenvalue problem.
         </Typography>
         <Typography paragraph>
-          <em>Zero forcing</em> is an iterative graph coloring process.
-          At each iteration, given a set of colored vertices, any colored
-          vertex with a single uncolored neighbor causes that neighbor to be
-          colored.
+          <em>Zero forcing</em> is an iterative graph coloring process, during
+          which a coloring rule is applied. The coloring rule says that, given
+          a set of colored vertices, any colored vertex with a single uncolored
+          neighbor causes that neighbor to be colored.
           A <em>zero forcing set</em> is a set of initially colored vertices which,
-          after iteratively applying the coloring rule, eventually colors the entires graph.
+          after iteratively applying the coloring rule, eventually colors the entire graph.
           Of particular interest, is identifying <em>minimal</em>zero forcing sets.
         </Typography>
       </Box>
@@ -38,16 +38,18 @@ export const About = () => {
           The STEP button invokes one iteration of the coloring rule
           described above, which will color any uncolored nodes,
           based on the currently colored nodes.
-          Checking to see if you found a zero forcing set amounts to clicking
-          STEP to see whether your initial set colors the whole graph.
+          Checking to see if you found a zero forcing set amounts to
+          coloring the nodes and clicking STEP to see whether your initial
+          forces the whole graph to become colored.
         </Typography>
         <Typography paragraph>
-          You can add you own adjacency matrix in the Adjacency Matrix tab of this drawer.
-          The matrix should be entered as comma-delimited rows, no commas on the end.
-          Because these are adjacency amtrices, it must be square and symmetric.
+          Within this drawer resides the text you{`'`}re viewing now.
+          Additionally, you can view the graph defined by the adjacency matrix
+          of your choice by entering it into the Matrix tab.
+          A minimal set of graph settings lives in the Settings tab to
+          let users customize the experience a bit.
         </Typography>
         <Typography paragraph>
-          Lastly, there is a minimal set of graph settings to customize the experience a bit.
         </Typography>
       </Box>
 

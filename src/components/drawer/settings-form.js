@@ -1,4 +1,4 @@
-import { Box, FormControl, FormLabel, Slider, Stack } from '@mui/material'
+import { Box, FormControl, FormLabel, Slider, Stack, Typography } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
 import { useGraph } from '../../graph-context'
 
@@ -8,6 +8,8 @@ export const SettingsForm = () => {
   return (
     <Box>
       <Stack direction="column" spacing={ 4 }>
+
+        <Typography variant="h2" sx={{ flex: 1, fontSize: '135%' }}>Graph Settings</Typography>
 
         <FormControl sx={{ flexDirection: 'row', gap: '1rem' }}>
           <FormLabel>Node Size</FormLabel>
