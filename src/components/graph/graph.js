@@ -20,9 +20,9 @@ export const Graph = ({ nodes, edges, height, width }) => {
 
   const nodeColor = useCallback(node => graph.coloredNodes.size
     ? graph.coloredNodes.has(node.id)
-      ? theme.palette.secondary.dark
-      : '#b7c4dd'
-  : '#b7c4dd', [graph.coloredNodes])
+      ? theme.palette.secondary.main
+      : '#888'
+  : '#888', [graph.coloredNodes])
 
   // const highlightedNodes = useMemo(() => {
   //   return activeNode !== null
@@ -30,15 +30,17 @@ export const Graph = ({ nodes, edges, height, width }) => {
   //     : new Set()
   // }, [activeNode])
 
-  // const nodeHighlight = useCallback(({ x, y, id }, context) => {
-  //   context.fillStyle = '#fff'
-  //   context.beginPath()
-  //   context.arc(x, y, 5, 0, 2 * Math.PI, false)
-  //   context.lineWidth = activeNode === id ? 3 : 1
-  //   context.strokeStyle = theme.palette.primary.light
-  //   context.stroke()
-  //   context.fill()
-  // }, [activeNode])
+  const nodeCanvasObject = useCallback(({ x, y, id }, context) => {
+    context.fillStyle = graph.coloredNodes.has(id)
+      ? theme.palette.secondary.light
+      : '#fff'
+    context.beginPath()
+    context.arc(x, y, 5, 0, 2 * Math.PI, false)
+    context.lineWidth = 1
+    context.strokeStyle = theme.palette.primary.light
+    context.stroke()
+    context.fill()
+  }, [graph.coloredNodes])
 
   // const handleHoverNode = useCallback((node, ) => {
   //   if (node) {
@@ -73,11 +75,11 @@ export const Graph = ({ nodes, edges, height, width }) => {
       width={ width }
       graphData={{ nodes, links: edges }}
       enablePointerInteraction={ true }
-      onNodeClick={ handleClickNode }
       nodeColor={ nodeColor }
-      linkColor={ () => '#aaa' }
+      nodeCanvasObject={ nodeCanvasObject }
+      onNodeClick={ handleClickNode }
+      linkColor={ () => '#555' }
       linkWidth={ 1 }
-      linkOpacity="1.0"
       nodeLabel={ node => `${ node.id }` }
       autoPauseRedraw={ false }
     />

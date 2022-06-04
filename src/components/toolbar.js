@@ -58,21 +58,18 @@ export const Toolbar = ({ toggleDrawer }) => {
 
         <Stack spacing={ 1 } direction="row">
           <Tooltip title="Apply coloring rule" placement="bottom">
-            <span>
-              <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                endIcon={ <StepIcon /> }
-                onClick={ colorStep }
-                disabled={ graph.coloredNodes.size === 0 || graph.coloredNodes.size === graph.nodes.length }
-              >Step</Button>
-            </span>
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              endIcon={ <StepIcon /> }
+              onClick={ colorStep }
+            >Step</Button>
           </Tooltip>
           <Tooltip title="Clear coloring" placement="bottom">
             <span>
               <IconButton
-                color="primary"
+                color="secondary"
                 size="small"
                 onClick={ graph.uncolorAllNodes }
                 disabled={ graph.coloredNodes.size === 0 }
