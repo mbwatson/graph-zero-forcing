@@ -71,14 +71,15 @@ export const MatrixEditor = () => {
   return (
     <Stack spacing={ 2 } alignItems="stretch">
       <Stack direction="row" justifyContent="space-between" spacing={ 2 }>
-
-        <Stack direction="row" spacing={ 2 } alignItems="center">
-          <Typography component={ Stack } justifyContent="center">
-            ADJACENCY MATRIX
-          </Typography>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          width: '100%',
+          gap: '1rem',
+        }}>
           {
             showResetButton && (
-              <Tooltip title="Reset adjacency matrix" placement="right">
+              <Tooltip title="Reset matrix" placement="left">
                 <IconButton
                   size="small"
                   variant="outlined"
@@ -87,11 +88,6 @@ export const MatrixEditor = () => {
               </Tooltip>
             )
           }
-        </Stack>
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}>
           <Button
             variant="outlined"
             onClick={ handleClickOpenMenu }

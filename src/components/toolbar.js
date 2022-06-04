@@ -4,7 +4,7 @@ import {
   Check as CheckIcon,
   RestartAlt as ResetIcon,
   SkipNext as StepIcon,
-  GridOn as MatrixEditorIcon,
+  Settings as SettingsIcon,
 } from '@mui/icons-material'
 import { useGraph } from '../graph-context'
 
@@ -57,15 +57,6 @@ export const Toolbar = ({ toggleDrawer }) => {
         </Stack>
 
         <Stack spacing={ 1 } direction="row">
-          <Tooltip title="Apply coloring rule" placement="bottom">
-            <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              endIcon={ <StepIcon /> }
-              onClick={ colorStep }
-            >Step</Button>
-          </Tooltip>
           <Tooltip title="Clear coloring" placement="bottom">
             <span>
               <IconButton
@@ -76,12 +67,21 @@ export const Toolbar = ({ toggleDrawer }) => {
               ><ResetIcon fontSize="small" /></IconButton>
             </span>
           </Tooltip>
-          <Tooltip title="Adjacency Matrix" placement="bottom">
+          <Tooltip title="Apply coloring rule" placement="bottom">
+            <Button
+              variant="contained"
+              color="secondary"
+              size="small"
+              endIcon={ <StepIcon /> }
+              onClick={ colorStep }
+            >Step</Button>
+          </Tooltip>
+          <Tooltip title="Settings" placement="bottom">
             <IconButton
               color="primary"
               size="small"
               onClick={ toggleDrawer }
-            ><MatrixEditorIcon fontSize="small" /></IconButton>
+            ><SettingsIcon fontSize="small" /></IconButton>
           </Tooltip>
         </Stack>
       </Stack>
