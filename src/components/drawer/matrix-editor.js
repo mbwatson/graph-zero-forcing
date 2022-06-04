@@ -19,9 +19,9 @@ const inputToMatrix = input => input
   )
 
 export const MatrixEditor = () => {
-  const { graph, adjMatrix, setAdjMatrix } = useGraph()
+  const { graph } = useGraph()
   const textElement = useRef()
-  const [textContent, setTextContent] = useState(matrixToInput(adjMatrix.data))
+  const [textContent, setTextContent] = useState(matrixToInput(graph.adjacencyMatrix.data))
   const [error, setError] = useState(null)
   const [showResetButton, setShowResetButton] = useState(false)
   const [menuAnchorEl, setMenuAnchorEl] = useState(null)
@@ -41,7 +41,7 @@ export const MatrixEditor = () => {
       if (!newMatrix.isSymmetric()) {
         throw new Error('Matrix must be symmetric')
       }
-      setAdjMatrix(newMatrix)
+      graph.setMatrix(inputArray)
       graph.uncolorAllNodes()
       setShowResetButton(false)
     } catch (error) {
@@ -56,7 +56,7 @@ export const MatrixEditor = () => {
 
   const handleClickResetMatrix = () => {
     setShowResetButton(false)
-    setTextContent(matrixToInput(adjMatrix.data))
+    setTextContent(matrixToInput(graph.adjacencyMatrix.data))
   }
 
   const handleSelectPresetMatrix = graphName => () => {

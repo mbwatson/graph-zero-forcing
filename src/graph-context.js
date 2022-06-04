@@ -1,9 +1,9 @@
-import { createContext, useCallback, useContext, useEffect, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useLocalStorage } from './hooks'
 import { Matrix } from 'ml-matrix'
 
-const initialGraph = new Matrix([
+const initialGraph = [
   [0, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 1, 0, 0, 0, 0, 0, 0],
   [0, 1, 0, 1, 0, 0, 0, 0, 0],
@@ -13,14 +13,18 @@ const initialGraph = new Matrix([
   [0, 0, 0, 0, 0, 1, 0, 1, 0],
   [0, 0, 0, 0, 0, 0, 1, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 1, 0],
-])
+]
 
 const GraphContext = createContext({})
 
 export const useGraph = () => useContext(GraphContext)
 
 export const GraphProvider = ({ children }) => {
-  const [adjMatrix, setAdjMatrix] = useState(initialGraph)
+  // matrix will be the 2d array
+  const [matrix, setMatrix] = useLocalStorage('adjacency-matrix', initialGraph)
+  // adjacencyMatrix will be the instance of the Matrix object,
+  // which provides all those calculation helpers.
+  const adjacencyMatrix = useMemo(() => new Matrix(matrix), [matrix])
   const [nodes, setNodes] = useState([])
   const [edges, setEdges] = useState([])
   const [coloredNodes, setColoredNodes] = useState(new Set())
@@ -28,9 +32,9 @@ export const GraphProvider = ({ children }) => {
   const [nodeSize, setNodeSize] = useLocalStorage('node-size', 4)
   
   useEffect(() => {
-    setNodes([...Array(adjMatrix.rows).keys()].map(i => ({ id: i })))
+    setNodes([...Array(adjacencyMatrix.rows).keys()].map(i => ({ id: i })))
     let _edges = []
-    adjMatrix.data.forEach((row, i) => {
+    adjacencyMatrix.data.forEach((row, i) => {
       for (let j = 0; j < i; j += 1) {
         if (row[j] === 1) {
           _edges.push({ source: i, target: j })
@@ -38,7 +42,7 @@ export const GraphProvider = ({ children }) => {
       }
     })
     setEdges(_edges)
-  }, [adjMatrix])
+  }, [adjacencyMatrix])
 
   const toggleNodeColor = useCallback(i => {
     if (coloredNodes.has(i)) {
@@ -64,7 +68,7 @@ export const GraphProvider = ({ children }) => {
 
   const neighbors = useCallback(i => {
     let neighbors = new Set([i])
-    adjMatrix.data[i].forEach((entry, j) => {
+    adjacencyMatrix.data[i].forEach((entry, j) => {
       if (entry === 1) {
         neighbors.add(j)
       }
@@ -88,7 +92,8 @@ export const GraphProvider = ({ children }) => {
       graph: {
         nodes,
         edges,
-        adjMatrix,
+        adjacencyMatrix,
+        setMatrix,
         coloredNodes,
         toggleNodeColor,
         uncolorAllNodes,
@@ -101,8 +106,8 @@ export const GraphProvider = ({ children }) => {
         },
       },
       colorStep,
-      adjMatrix,
-      setAdjMatrix,
+      matrix,
+      setMatrix,
     }}>
       { children }
     </GraphContext.Provider>

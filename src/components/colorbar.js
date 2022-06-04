@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import PropTypes from 'prop-types'
 import { Box, Button, IconButton, Stack, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material'
 import {
   CheckCircle as CheckIcon,
@@ -80,8 +79,4 @@ export const Colorbar = () => {
       </Stack>
     </Box>
   )
-}
-
-Colorbar.propTypes = {
-  toggleDrawer: PropTypes.func.isRequired,
 }
