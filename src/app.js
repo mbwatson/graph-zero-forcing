@@ -14,7 +14,7 @@ export const App = () => {
 
   return (
     <Fragment>
-      <Toolbar toggleDrawer={ toggleDrawer } />
+      <Toolbar drawerOpen={ dialogOpen } toggleDrawer={ toggleDrawer } />
       <Drawer
         open={ dialogOpen }
         closeHandler={ () => setDialogOpen(false) }

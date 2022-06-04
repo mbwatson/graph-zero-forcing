@@ -4,7 +4,7 @@ import {
   Settings as SettingsIcon,
 } from '@mui/icons-material'
 
-export const Toolbar = ({ toggleDrawer }) => {
+export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()
 
   return (
@@ -15,16 +15,16 @@ export const Toolbar = ({ toggleDrawer }) => {
         alignItems="center"
         justifyContent="flex-end"
         sx={{
-          padding: '1rem',
+          padding: '1.5rem 1rem',
           position: 'relative',
           backgroundColor: theme.palette.grey[900],
         }}
       >
-        <Tooltip title="Settings" placement="bottom">
+        <Tooltip title="Settings" placement="left">
           <IconButton
-            color="primary"
             size="small"
             onClick={ toggleDrawer }
+            sx={{ color: drawerOpen ? theme.palette.primary.main : '#eee' }}
           ><SettingsIcon fontSize="small" /></IconButton>
         </Tooltip>
       </Stack>
@@ -34,4 +34,5 @@ export const Toolbar = ({ toggleDrawer }) => {
 
 Toolbar.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
+  drawerOpen: PropTypes.bool.isRequired,
 }
