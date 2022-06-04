@@ -64,8 +64,8 @@ export const Drawer = ({ open, closeHandler }) => {
           onChange={ handleClickTab }
           variant="scrollable"
         >
-          <Tab label="Adjacency Matrix" />
-          <Tab label="Graph Settings" />
+          <Tab label="Matrix" />
+          <Tab label="Settings" />
           <Tab label="About" />
         </Tabs>
         <br />
