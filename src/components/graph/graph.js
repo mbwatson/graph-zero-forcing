@@ -32,7 +32,7 @@ export const Graph = ({ nodes, edges, height, width }) => {
 
   const nodeCanvasObject = useCallback(({ x, y, id }, context) => {
     context.fillStyle = graph.coloredNodes.has(id)
-      ? theme.palette.secondary.light
+      ? graph.settings.color
       : '#fff'
     context.beginPath()
     context.arc(x, y, 5, 0, 2 * Math.PI, false)
@@ -40,7 +40,7 @@ export const Graph = ({ nodes, edges, height, width }) => {
     context.strokeStyle = theme.palette.primary.light
     context.stroke()
     context.fill()
-  }, [graph.coloredNodes])
+  }, [graph.coloredNodes, graph.settings.color])
 
   // const handleHoverNode = useCallback((node, ) => {
   //   if (node) {
