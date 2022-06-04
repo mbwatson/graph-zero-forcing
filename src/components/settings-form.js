@@ -17,10 +17,7 @@ export const SettingsForm = () => {
             valueLabelDisplay="on"
             getAriaValueText={ () => `${ graph.settings.nodeSize } px node radius` }
             value={ graph.settings.nodeSize }
-            onChange={ (event, newValue) => {
-              console.log(newValue)
-              return graph.settings.setNodeSize(newValue)
-            } }
+            onChange={ (event, newValue) => graph.settings.setNodeSize(newValue) }
             sx={{ width: '100%', maxWidth: '300px' }}
           />
         </FormControl>
