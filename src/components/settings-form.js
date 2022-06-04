@@ -7,22 +7,7 @@ export const SettingsForm = () => {
 
   return (
     <CardContent>
-
-      <Stack direction="column" spacing={ 5 }>
-
-        <FormControl sx={{
-          gap: '1rem',
-          '& .react-colorful': {
-            width: '100%',
-            height: '150px',
-          }
-        }}>
-          <FormLabel>Node Color</FormLabel>
-          <HexColorPicker
-            color={ graph.settings.color }
-            onChange={ graph.settings.setColor }
-          />
-        </FormControl>
+      <Stack direction="column" spacing={ 4 }>
 
         <FormControl sx={{ flexDirection: 'row', gap: '1rem' }}>
           <FormLabel>Node Size</FormLabel>
@@ -39,8 +24,22 @@ export const SettingsForm = () => {
             sx={{ width: '100%', maxWidth: '300px' }}
           />
         </FormControl>
-      </Stack>
 
+        <FormControl sx={{
+          gap: '1rem',
+          '& .react-colorful': {
+            width: '100%',
+            height: '150px',
+          }
+        }}>
+          <FormLabel>Node Color</FormLabel>
+          <HexColorPicker
+            color={ graph.settings.color }
+            onChange={ graph.settings.setColor }
+          />
+        </FormControl>
+
+      </Stack>
     </CardContent>
   )
 }
