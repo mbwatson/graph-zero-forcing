@@ -3,10 +3,28 @@ import { AppBar, IconButton, Stack, Tooltip, useTheme } from '@mui/material'
 import {
   Close as CloseDrawerIcon,
   Settings as SettingsIcon,
+  Download as DownloadIcon,
 } from '@mui/icons-material'
+import { useGraph } from '../graph-context'
 
 export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()
+  const { graph } = useGraph()
+
+  const downloadCanvasPNG = () => {
+    if (!graph) { return }
+    const canvas = document.querySelector('.force-graph-container > canvas')
+    if (!canvas) {
+      return
+    }
+    const link = document.createElement('a')
+    link.download = `graph - ${ new Date().toLocaleString()
+      .replace(/\//g, '-')
+      .replace(/:/g, '-')
+      .replace(/,? /g, '_') }.png`
+    link.href = canvas.toDataURL('image/png')
+    link.click()
+  }
 
   return (
     <AppBar sx={{ backgroundColor: '#a7b4cd', zIndex: 2 }}>
@@ -21,7 +39,18 @@ export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
           backgroundColor: theme.palette.grey[900],
         }}
       >
-        <Tooltip title="Settings" placement="left">
+        <Tooltip title="Download graph as PNG" placement="bottom">
+          <IconButton
+            size="small"
+            onClick={ downloadCanvasPNG }
+            sx={{
+              color: '#eee',
+              transition: 'color 250ms',
+              '&:hover': { color: theme.palette.primary.main }
+            }}
+          ><DownloadIcon /></IconButton>
+        </Tooltip>
+        <Tooltip title="Settings" placement="bottom">
           <IconButton
             size="small"
             onClick={ toggleDrawer }
