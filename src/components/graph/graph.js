@@ -53,7 +53,6 @@ export const Graph = ({ nodes, edges, height, width }) => {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [fgRef.current])
 
-
   return (
     <ForceGraph2D
       ref={ fgRef }
