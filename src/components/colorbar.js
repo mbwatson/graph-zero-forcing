@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Box, Button, IconButton, Stack, Tooltip, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Box, Button, IconButton, Stack, Tooltip, Typography, useTheme } from '@mui/material'
 import {
   CheckCircle as CheckIcon,
   Circle as CircleIcon,
@@ -7,11 +7,12 @@ import {
   SkipNext as StepIcon,
 } from '@mui/icons-material'
 import { useGraph } from '../graph-context'
+import { useApp } from '../app-context'
 
 export const Colorbar = () => {
   const theme = useTheme()
+  const { compact } = useApp()
   const { colorStep, graph } = useGraph()
-  const compact = useMediaQuery('(max-width: 600px)')
 
   const conditionalStyles = useMemo(() => compact ? ({
       bottom: 0,
