@@ -4,6 +4,13 @@ import { ThemeProvider } from '@mui/material/styles'
 import { GraphProvider } from './graph-context'
 import { theme } from './theme'
 import  './index.scss'
+import ReactGA from 'react-ga4'
+
+ReactGA.initialize([
+  {
+    trackingId: 'G-ZXC48NE5CE',
+  },
+])
 
 const container = document.getElementById('root')
 const root = createRoot(container)
