@@ -35,7 +35,6 @@ export const Colorbar = () => {
         backgroundColor: '#3336',
       },
       padding: theme.spacing(2),
-      color: theme.palette.primary.main,
       zIndex: 9,
       display: 'flex',
       justifyContent: 'space-between',
