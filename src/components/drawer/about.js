@@ -45,7 +45,10 @@ export const About = () => {
         <Typography paragraph>
           Within this drawer resides the text you{`'`}re viewing now.
           Additionally, the graph rendered can be customized by entering any
-          adjacency matrix into the Matrix tab.
+          adjacency matrix into the text field under the Matrix tab.
+          A few preset matrices are available for convenience.
+          Click the Generate Graph button to rener a new graph with the new
+          adjacency matrix.
           Lastly, a minimal set of graph settings lives in the Settings tab to
           let users customize the experience a bit.
         </Typography>
