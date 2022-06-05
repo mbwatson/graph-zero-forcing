@@ -30,23 +30,23 @@ export const About = () => {
 
       <Box>
         <Typography variant="h2" sx={{ fontSize: '135%' }}>
-          How is this used?
+          How is this tool used?
         </Typography>
         <br />
         <Typography paragraph>
           Click nodes in the graph to color and uncolor them.
           The STEP button invokes one iteration of the coloring rule
           described above, which will color any uncolored nodes,
-          based on the currently colored nodes.
-          Checking to see if you found a zero forcing set amounts to
-          coloring the nodes and clicking STEP to see whether your initial
-          forces the whole graph to become colored.
+          based on the coloring rule described above.
+          Checking to see if a zero forcing set has been found amounts to
+          coloring the nodes of your initial set and clicking the STEP button
+          to see whether it does indeed force the whole graph to become colored.
         </Typography>
         <Typography paragraph>
           Within this drawer resides the text you{`'`}re viewing now.
-          Additionally, you can view the graph defined by the adjacency matrix
-          of your choice by entering it into the Matrix tab.
-          A minimal set of graph settings lives in the Settings tab to
+          Additionally, the graph rendered can be customized by entering any
+          adjacency matrix into the Matrix tab.
+          Lastly, a minimal set of graph settings lives in the Settings tab to
           let users customize the experience a bit.
         </Typography>
         <Typography paragraph>
