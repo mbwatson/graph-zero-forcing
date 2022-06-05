@@ -60,7 +60,7 @@ export const Colorbar = () => {
         <Tooltip title="Reset coloring" placement="top">
           <Stack justifyContent="center">
             <IconButton
-              color="secondary"
+              color="primary"
               size="small"
               onClick={ graph.uncolorAllNodes }
               disabled={ graph.coloredNodes.size === 0 }
@@ -70,7 +70,7 @@ export const Colorbar = () => {
         <Tooltip title="Apply coloring rule" placement="top">
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             endIcon={ <StepIcon /> }
             onClick={ colorStep }
             sx={{ padding: '1rem' }}
