@@ -1,9 +1,12 @@
+import { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { AppBar, IconButton, Stack, Tooltip, useTheme } from '@mui/material'
 import {
   Close as CloseDrawerIcon,
   Settings as SettingsIcon,
   Download as DownloadIcon,
+  LightMode as LightModeIcon,
+  DarkMode as DarkModeIcon,
 } from '@mui/icons-material'
 import { useGraph } from './graph'
 import { useApp } from '../context'
@@ -11,7 +14,11 @@ import { useApp } from '../context'
 export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()
   const { graph } = useGraph()
-  const { otherMode, toggleMode, ModeIcon } = useApp()
+  const { MODES, mode, otherMode, toggleMode } = useApp()
+
+  const ModeIcon = useCallback(() => (
+    mode === MODES.light ? <LightModeIcon /> : <DarkModeIcon />
+  ), [mode])
 
   const downloadCanvasPNG = () => {
     if (!graph) { return }
