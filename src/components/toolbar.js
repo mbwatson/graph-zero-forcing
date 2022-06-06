@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types'
-import { AppBar, IconButton, Stack, Tooltip, useTheme } from '@mui/material'
+import { AppBar, IconButton, FormGroup, FormControlLabel, Label, Stack, Switch, Tooltip, useTheme } from '@mui/material'
 import {
   Close as CloseDrawerIcon,
   Settings as SettingsIcon,
   Download as DownloadIcon,
+  LightMode as LightModeIcon,
+  DarkMode as DarkModeIcon,
 } from '@mui/icons-material'
 import { useGraph } from './graph'
+import { useApp } from '../context'
 
 export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()
   const { graph } = useGraph()
+  const { MODES, mode, setMode, otherMode, toggleMode } = useApp()
 
   const downloadCanvasPNG = () => {
     if (!graph) { return }
@@ -27,7 +31,7 @@ export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   }
 
   return (
-    <AppBar sx={{ backgroundColor: '#a7b4cd', zIndex: 2 }}>
+    <AppBar sx={{ backgroundColor: theme.palette.background.paper, zIndex: 2 }}>
       <Stack
         spacing={ 1 }
         direction="row"
@@ -36,25 +40,25 @@ export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
         sx={{
           padding: '1.5rem 1rem',
           position: 'relative',
-          backgroundColor: theme.palette.grey[900],
         }}
       >
-        <Tooltip title="Download graph as PNG" placement="bottom">
+        <Tooltip title="Download Graph as PNG" placement="bottom">
           <IconButton
             size="small"
             onClick={ downloadCanvasPNG }
             sx={{
-              color: '#eee',
+              color: theme.palette.text.primary,
               transition: 'color 250ms',
               '&:hover': { color: theme.palette.primary.main }
             }}
           ><DownloadIcon /></IconButton>
         </Tooltip>
-        <Tooltip title="Settings" placement="bottom">
+
+        <Tooltip title="View Settings" placement="bottom">
           <IconButton
             size="small"
             onClick={ toggleDrawer }
-            sx={{ color: drawerOpen ? theme.palette.primary.main : '#eee' }}
+            sx={{ color: drawerOpen ? theme.palette.primary.main : theme.palette.text.primary }}
           >{ drawerOpen ? <CloseDrawerIcon /> : <SettingsIcon /> }</IconButton>
         </Tooltip>
       </Stack>
