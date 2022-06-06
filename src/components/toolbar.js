@@ -6,10 +6,12 @@ import {
   Download as DownloadIcon,
 } from '@mui/icons-material'
 import { useGraph } from './graph'
+import { useApp } from '../context'
 
 export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()
   const { graph } = useGraph()
+  const { otherMode, toggleMode, ModeIcon } = useApp()
 
   const downloadCanvasPNG = () => {
     if (!graph) { return }
@@ -39,6 +41,17 @@ export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
           backgroundColor: theme.palette.grey[900],
         }}
       >
+        <Tooltip title={ `Switch to ${ otherMode } mode` } placement="bottom">
+          <IconButton
+            size="small"
+            onClick={ toggleMode }
+            sx={{
+              color: '#eee',
+              transition: 'color 250ms',
+              '&:hover': { color: theme.palette.primary.main }
+            }}
+          ><ModeIcon /></IconButton>
+        </Tooltip>
         <Tooltip title="Download graph as PNG" placement="bottom">
           <IconButton
             size="small"
