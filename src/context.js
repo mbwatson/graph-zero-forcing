@@ -10,13 +10,32 @@ const MODES = {
   dark: 'dark',
 }
 
-const globalTheme = {
+const lightTheme = {
   palette: {
     primary: {
       main: '#773755',
     },
     secondary: {
       main: '#468',
+    },
+    background: {
+      default: '#ddd',
+      paper: '#ddd',
+    },
+  },
+}
+
+const darkTheme = {
+  palette: {
+    primary: {
+      main: '#222',
+    },
+    secondary: {
+      main: '#333',
+    },
+    background: {
+      default: '#333',
+      paper: '#333',
     },
   },
 }
@@ -34,11 +53,11 @@ export const AppProvider = ({ children }) => {
   const toggleMode = () => setMode(otherMode)
 
   const theme = useMemo(() => createTheme({
-    ...globalTheme,
-    palette: {
-      mode,
-    }
+    palette: { mode },
+    ...(mode === MODES.light ? lightTheme : darkTheme),
   }), [mode])
+
+  console.log(theme.palette)
 
   return (
     <AppContext.Provider value={{
