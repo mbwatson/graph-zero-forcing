@@ -1,7 +1,7 @@
 import { App } from './app'
 import { createRoot } from 'react-dom/client'
 import { ThemeProvider } from '@mui/material/styles'
-import { AppProvider } from './app-context'
+import { AppProvider } from './context'
 import { GraphProvider } from './components/graph'
 import { theme } from './theme'
 import  './index.scss'

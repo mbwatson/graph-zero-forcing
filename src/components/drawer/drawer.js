@@ -4,7 +4,7 @@ import {
   CardContent, Drawer as MuiDrawer,
   Tab, Tabs, useTheme,
 } from '@mui/material'
-import { useApp } from '../../app-context'
+import { useApp } from '../../context'
 import { MatrixEditor } from './matrix-editor'
 import { SettingsForm } from './settings-form'
 import { About } from './about'

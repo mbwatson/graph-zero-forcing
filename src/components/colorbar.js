@@ -7,7 +7,7 @@ import {
   SkipNext as StepIcon,
 } from '@mui/icons-material'
 import { useGraph } from './graph'
-import { useApp } from '../app-context'
+import { useApp } from '../context'
 
 export const Colorbar = () => {
   const theme = useTheme()
