@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useMediaQuery } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -33,13 +33,13 @@ const lightTheme = {
 const darkTheme = {
   palette: {
     primary: {
-      main: '#773755',
+      main: '#874765',
     },
     secondary: {
       main: '#468',
     },
     background: {
-      default: '#333',
+      default: '#666',
       paper: '#222',
     },
     text: {
@@ -53,13 +53,14 @@ export const useApp = () => useContext(AppContext)
 
 export const AppProvider = ({ children }) => {
   const compact = useMediaQuery('(max-width: 600px)')
-  const [mode, setMode] = useLocalStorage('mode', MODES.dark)
+  const [mode, setMode] = useLocalStorage('mode', MODES.light)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen)
 
   const otherMode = useMemo(() => mode === MODES.light ? MODES.dark : MODES.light, [mode])
-  const toggleMode = () => setMode(otherMode)
+
+  const toggleMode = useCallback(() => setMode(otherMode), [otherMode])
 
   const theme = useMemo(() => createTheme({
     palette: { mode },
@@ -69,7 +70,7 @@ export const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider value={{
       compact,
-      MODES, mode, toggleMode, otherMode,
+      MODES, mode, setMode, toggleMode, otherMode,
       drawerOpen, toggleDrawer,
     }}>
       <ThemeProvider theme={ theme }>

@@ -82,14 +82,14 @@ export const MatrixEditor = () => {
             showResetButton && (
               <Tooltip title="Reset matrix" placement="left">
                 <IconButton
-                  size="small"
-                  variant="outlined"
+                  color="primary"
                   onClick={ handleClickResetMatrix }
                 ><ResetIcon fontSize="small" /></IconButton>
               </Tooltip>
             )
           }
           <Button
+            color="primary"
             variant="outlined"
             onClick={ handleClickOpenMenu }
             endIcon={ <MenuOpenIcon /> }
@@ -125,7 +125,7 @@ export const MatrixEditor = () => {
         />
         <br />
         {
-          error && <Typography color="darkred">{ error.message }</Typography>
+          error && <Typography color="pink">{ error.message }</Typography>
         }
         <br />
         <Button
