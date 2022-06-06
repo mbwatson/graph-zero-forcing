@@ -5,7 +5,7 @@ import {
   Settings as SettingsIcon,
   Download as DownloadIcon,
 } from '@mui/icons-material'
-import { useGraph } from '../graph-context'
+import { useGraph } from './graph'
 
 export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()

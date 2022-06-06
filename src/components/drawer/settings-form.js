@@ -1,6 +1,6 @@
 import { Box, FormControl, FormLabel, Slider, Stack, Typography } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
-import { useGraph } from '../../graph-context'
+import { useGraph } from '../graph'
 
 export const SettingsForm = () => {
   const { graph } = useGraph()

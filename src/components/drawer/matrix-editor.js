@@ -6,7 +6,7 @@ import {
   RestartAlt as ResetIcon,
   KeyboardArrowDown as MenuOpenIcon,
 } from '@mui/icons-material'
-import { useGraph } from '../../graph-context'
+import { useGraph } from '../graph'
 import { Matrix } from 'ml-matrix'
 import matrices from '../../lib/matrices'
 

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { useTheme } from '@mui/material'
-import { useGraph } from '../../graph-context'
+import { useGraph } from './context'
 
 const ForceGraph2D = loadable(() => import('./force-graph'))
 
