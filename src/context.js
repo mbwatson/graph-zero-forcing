@@ -20,7 +20,11 @@ const lightTheme = {
     },
     background: {
       default: '#ddd',
-      paper: '#ddd',
+      paper: '#eee',
+    },
+    text: {
+      primary: '#333',
+      secondary: '#666',
     },
   },
 }
@@ -28,14 +32,18 @@ const lightTheme = {
 const darkTheme = {
   palette: {
     primary: {
-      main: '#222',
+      main: '#773755',
     },
     secondary: {
-      main: '#333',
+      main: '#468',
     },
     background: {
       default: '#333',
-      paper: '#333',
+      paper: '#222',
+    },
+    text: {
+      primary: '#fff',
+      secondary: '#666',
     },
   },
 }

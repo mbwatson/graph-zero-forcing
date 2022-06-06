@@ -52,7 +52,7 @@ export const Drawer = () => {
       sx={{ zIndex: 1 }}
       PaperProps={{
         style: {
-          backgroundColor: '#eee',
+          backgroundColor: theme.palette.background.paper,
           paddingTop: theme.spacing(9),
           margin: compact ? 0 : '0 1rem',
         }

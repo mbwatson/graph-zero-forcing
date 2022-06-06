@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Box, useTheme } from '@mui/material'
 import ReactResizeDetector from 'react-resize-detector';
 import { useApp } from './context'
 import { Graph, useGraph } from './components/graph'
@@ -7,11 +7,18 @@ import { Colorbar } from './components/colorbar'
 import { Drawer } from './components/drawer'
 
 export const App = () => {
+  const theme = useTheme()
   const { graph } = useGraph()
   const { drawerOpen, toggleDrawer } = useApp()
 
   return (
-    <Fragment>
+    <Box sx={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      backgroundColor: theme.palette.background.default,
+    }}>
       <Toolbar drawerOpen={ drawerOpen } toggleDrawer={ toggleDrawer } />
 
       <Drawer
@@ -34,6 +41,6 @@ export const App = () => {
 
       <Colorbar />
 
-    </Fragment>
+    </Box>
   )
 }

@@ -30,10 +30,11 @@ export const Colorbar = () => {
     <Box sx={{
       position: 'absolute',
       boxSizing: 'border-box',
-      backgroundColor: '#3333',
-      transition: 'background-color 250ms',
+      backgroundColor: theme.palette.background.paper,
+      transition: 'filter 250ms',
+      filter: 'opacity(0.8)',
       '&:hover': {
-        backgroundColor: '#3336',
+        filter: 'opacity(1.0)',
       },
       padding: theme.spacing(2),
       zIndex: 9,
@@ -42,22 +43,22 @@ export const Colorbar = () => {
       alignItems: 'center',
       ...conditionalStyles,
     }}>
-      <Stack spacing={ 2 } direction="row" alignItems="center">
+      <Stack spacing={ 1 } direction="row" alignItems="center">
         <Box sx={{ width: '35px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           {
             graph.coloredNodes.size === graph.nodes.length ? (
-              <Tooltip title="All nodes are colored!" placement="bottom">
-                <CheckIcon sx={{ color: '#fff' }} fontSize="medium" />
+              <Tooltip title="All Nodes are Colored!" placement="bottom">
+                <CheckIcon sx={{ color: theme.palette.text.primary }} fontSize="medium" />
               </Tooltip>
-            ) : <CircleIcon sx={{ color: '#8888' }} fontSize="small" />
+            ) : <CircleIcon sx={{ color: theme.palette.text.secondary }} fontSize="small" />
           }
         </Box>
-        <Typography component={ Stack } justifyContent="center" color="#fff">
+        <Typography component={ Stack } justifyContent="center" color="text.primary">
           { graph.coloredNodes.size } of { graph.nodes.length } colored nodes
         </Typography>
       </Stack>
       <Stack spacing={ 2 } direction="row">
-        <Tooltip title="Reset coloring" placement="top">
+        <Tooltip title="Reset Coloring" placement="top">
           <Stack justifyContent="center">
             <IconButton
               color="primary"
@@ -67,7 +68,7 @@ export const Colorbar = () => {
             ><ResetIcon fontSize="small" /></IconButton>
           </Stack>
         </Tooltip>
-        <Tooltip title="Apply coloring rule" placement="top">
+        <Tooltip title="Apply Coloring Rule" placement="top">
           <Button
             variant="contained"
             color="primary"
