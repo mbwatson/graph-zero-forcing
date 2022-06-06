@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useMediaQuery } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useLocalStorage } from './hooks'
 
 const AppContext = createContext({})
 
@@ -52,7 +53,7 @@ export const useApp = () => useContext(AppContext)
 
 export const AppProvider = ({ children }) => {
   const compact = useMediaQuery('(max-width: 600px)')
-  const [mode, setMode] = useState(MODES.light)
+  const [mode, setMode] = useLocalStorage('mode', MODES.dark)
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen)
@@ -64,8 +65,6 @@ export const AppProvider = ({ children }) => {
     palette: { mode },
     ...(mode === MODES.light ? lightTheme : darkTheme),
   }), [mode])
-
-  console.log(theme.palette)
 
   return (
     <AppContext.Provider value={{
