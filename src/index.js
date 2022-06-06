@@ -1,8 +1,7 @@
 import { App } from './app'
 import { createRoot } from 'react-dom/client'
-import { ThemeProvider } from '@mui/material/styles'
-import { GraphProvider } from './graph-context'
-import { theme } from './theme'
+import { AppProvider } from './context'
+import { GraphProvider } from './components/graph'
 import  './index.scss'
 import ReactGA from 'react-ga4'
 
@@ -17,11 +16,11 @@ const root = createRoot(container)
 
 const ProvisionedApp = () => {
   return (
-    <ThemeProvider theme={ theme }>
+    <AppProvider>
       <GraphProvider>
         <App />
       </GraphProvider>
-    </ThemeProvider>
+    </AppProvider>
   )
 }
 root.render(<ProvisionedApp />)

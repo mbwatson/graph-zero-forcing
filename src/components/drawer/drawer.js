@@ -2,8 +2,9 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   CardContent, Drawer as MuiDrawer,
-  Tab, Tabs, useMediaQuery, useTheme,
+  Tab, Tabs, useTheme,
 } from '@mui/material'
+import { useApp } from '../../context'
 import { MatrixEditor } from './matrix-editor'
 import { SettingsForm } from './settings-form'
 import { About } from './about'
@@ -34,10 +35,10 @@ TabPanel.propTypes = {
 
 //
 
-export const Drawer = ({ open, closeHandler }) => {
+export const Drawer = () => {
   const theme = useTheme()
+  const { compact, drawerOpen, toggleDrawer } = useApp()
   const [currentTab, setCurrentTab] = useState(0)
-  const compact = useMediaQuery('(max-width: 600px)')
 
   const handleClickTab = (event, newTab) => {
     setCurrentTab(newTab)
@@ -45,13 +46,13 @@ export const Drawer = ({ open, closeHandler }) => {
 
   return (
     <MuiDrawer
-      open={ open }
-      onClose={ closeHandler }
+      open={ drawerOpen }
+      onClose={ toggleDrawer }
       anchor="top"
       sx={{ zIndex: 1 }}
       PaperProps={{
         style: {
-          backgroundColor: '#eee',
+          backgroundColor: theme.palette.background.paper,
           paddingTop: theme.spacing(9),
           margin: compact ? 0 : '0 1rem',
         }
@@ -81,9 +82,4 @@ export const Drawer = ({ open, closeHandler }) => {
       </CardContent>
     </MuiDrawer>
   )
-}
-
-Drawer.propTypes = {
-  open: PropTypes.bool.isRequired,
-  closeHandler: PropTypes.func.isRequired,
 }

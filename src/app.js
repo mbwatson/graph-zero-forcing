@@ -1,23 +1,29 @@
-import { Fragment, useState } from 'react'
+import { Box, useTheme } from '@mui/material'
 import ReactResizeDetector from 'react-resize-detector';
-import { useGraph } from './graph-context'
-import { Graph } from './components/graph'
+import { useApp } from './context'
+import { Graph, useGraph } from './components/graph'
 import { Toolbar } from './components/toolbar'
 import { Colorbar } from './components/colorbar'
 import { Drawer } from './components/drawer'
 
 export const App = () => {
+  const theme = useTheme()
   const { graph } = useGraph()
-  const [dialogOpen, setDialogOpen] = useState(false)
-
-  const toggleDrawer = () => setDialogOpen(!dialogOpen)
+  const { drawerOpen, toggleDrawer } = useApp()
 
   return (
-    <Fragment>
-      <Toolbar drawerOpen={ dialogOpen } toggleDrawer={ toggleDrawer } />
+    <Box sx={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'stretch',
+      backgroundColor: theme.palette.background.default,
+    }}>
+      <Toolbar drawerOpen={ drawerOpen } toggleDrawer={ toggleDrawer } />
+
       <Drawer
-        open={ dialogOpen }
-        closeHandler={ () => setDialogOpen(false) }
+        open={ drawerOpen }
+        closeHandler={ toggleDrawer }
       />
 
       <ReactResizeDetector handleWidth handleheight>
@@ -35,6 +41,6 @@ export const App = () => {
 
       <Colorbar />
 
-    </Fragment>
+    </Box>
   )
 }
