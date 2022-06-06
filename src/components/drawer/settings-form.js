@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Box, FormControl, FormControlLabel, FormLabel, Slider, Stack, Switch, Tooltip, Typography, useTheme } from '@mui/material'
+import { Box, FormControl, FormControlLabel, FormLabel, Slider, Stack, Switch, Typography, useTheme } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
 import { useGraph } from '../graph'
 import { useApp } from '../../context'
@@ -7,7 +7,7 @@ import { useApp } from '../../context'
 export const SettingsForm = () => {
   const theme = useTheme()
   const { graph } = useGraph()
-  const { MODES, mode, setMode, otherMode, toggleMode } = useApp()
+  const { MODES, mode, setMode } = useApp()
 
   const switchStyle = useMemo(() => ({
     width: 62,

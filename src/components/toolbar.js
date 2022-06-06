@@ -1,19 +1,15 @@
 import PropTypes from 'prop-types'
-import { AppBar, IconButton, FormGroup, FormControlLabel, Label, Stack, Switch, Tooltip, useTheme } from '@mui/material'
+import { AppBar, IconButton, Stack, Tooltip, useTheme } from '@mui/material'
 import {
   Close as CloseDrawerIcon,
   Settings as SettingsIcon,
   Download as DownloadIcon,
-  LightMode as LightModeIcon,
-  DarkMode as DarkModeIcon,
 } from '@mui/icons-material'
 import { useGraph } from './graph'
-import { useApp } from '../context'
 
 export const Toolbar = ({ drawerOpen, toggleDrawer }) => {
   const theme = useTheme()
   const { graph } = useGraph()
-  const { MODES, mode, setMode, otherMode, toggleMode } = useApp()
 
   const downloadCanvasPNG = () => {
     if (!graph) { return }
