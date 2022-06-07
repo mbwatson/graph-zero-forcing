@@ -85,7 +85,6 @@ export const Graph = ({ nodes, edges, height, width }) => {
       onNodeClick={ handleClickNode }
       onNodeHover={ handleHoverNode  }
       onNodeDrag={ handleHoverNode }
-      onNodeDragEnd={ () => console.log('end drag') }
       linkColor={ () => theme.palette.grey[500] }
       linkWidth={ 2 }
       nodeLabel={ node => `${ node.id }` }
