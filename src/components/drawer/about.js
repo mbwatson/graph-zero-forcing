@@ -47,7 +47,7 @@ export const About = () => {
           Additionally, the graph rendered can be customized by entering any
           adjacency matrix into the text field under the Matrix tab.
           A few preset matrices are available for convenience.
-          Click the Generate Graph button to rener a new graph with the new
+          Click the Generate Graph button to render a new graph with the new
           adjacency matrix.
           Lastly, a minimal set of graph settings lives in the Settings tab to
           let users customize the experience a bit.
