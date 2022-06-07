@@ -35,6 +35,10 @@ export const About = () => {
         <br />
         <Typography paragraph>
           Click nodes in the graph to color and uncolor them.
+          Clicking while holding down CTRL / ⌘ will also color or uncolor
+          all nodes adjacent to the clicked node.
+        </Typography>
+        <Typography paragraph>
           The STEP button invokes one iteration of the coloring rule
           described above, which will color any uncolored nodes,
           based on the coloring rule described above.
