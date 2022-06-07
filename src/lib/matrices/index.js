@@ -11,6 +11,14 @@ import { FlowerSnark } from './flower-snark'
 import { GolombGraph } from './golomb-graph'
 import { GossetGraph } from './gosset-graph'
 import { McGeeGraph } from './mcgee-graph'
+import { PetersenGraph } from './petersen-graph'
+import {
+  TetrahedralGraph,
+  HexahedralGraph,
+  DodecahedralGraph,
+  OctahedralGraph,
+  IcosahedralGraph,
+} from './platonic-solids'
 
 export default {
   Balaban11Cage,
@@ -26,4 +34,10 @@ export default {
   GolombGraph,
   GossetGraph,
   McGeeGraph,
+  PetersenGraph,
+  TetrahedralGraph,
+  HexahedralGraph,
+  DodecahedralGraph,
+  OctahedralGraph,
+  IcosahedralGraph
 }
