@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { useTheme } from '@mui/material'
@@ -10,18 +10,38 @@ export const Graph = ({ nodes, edges, height, width }) => {
   const theme = useTheme()
   const { graph } = useGraph()
   const fgRef = useRef()
+  const [highlightedNodes, setHighlightedNodes] = useState(new Set())
+
+  const updateHighlight = () => {
+    setHighlightedNodes(highlightedNodes)
+  }
+
+  const handleHoverNode = node => {
+    highlightedNodes.clear()
+    if (node) {
+      highlightedNodes.add(node.id)
+      graph.neighbors(node.id)
+        .forEach(i => highlightedNodes.add(i))
+    }
+    updateHighlight()
+  }
+
+  const paintRing = useCallback((node, ctx) => {
+    ctx.beginPath()
+    ctx.arc(node.x, node.y, graph.settings.nodeSize + 1.5, 0, 2 * Math.PI, false)
+    ctx.strokeStyle = `${ graph.settings.color }66`
+    ctx.lineWidth = 3
+    ctx.stroke()
+  }, [graph.settings])
 
   const handleClickNode = useCallback((node, ) => {
     graph.toggleNodeColor(node.id)
   }, [graph.coloredNodes])
 
-  const nodeColor = useCallback(node => graph.coloredNodes.size
-    ? graph.coloredNodes.has(node.id)
-      ? theme.palette.secondary.main
-      : '#888'
-  : '#888', [graph.coloredNodes])
-
   const nodeCanvasObject = useCallback(({ x, y, id }, context) => {
+    if (highlightedNodes.has(id)) {
+      paintRing({ x, y }, context)
+    }
     context.fillStyle = graph.coloredNodes.has(id)
       ? graph.settings.color
       : '#fff'
@@ -61,9 +81,10 @@ export const Graph = ({ nodes, edges, height, width }) => {
       graphData={{ nodes, links: edges }}
       enablePointerInteraction={ true }
       nodePointerAreaPaint={ nodePaint }
-      nodeColor={ nodeColor }
       nodeCanvasObject={ nodeCanvasObject }
       onNodeClick={ handleClickNode }
+      onNodeHover={ handleHoverNode  }
+      onNodeDrag={ handleHoverNode }
       linkColor={ () => theme.palette.grey[500] }
       linkWidth={ 2 }
       nodeLabel={ node => `${ node.id }` }

@@ -1,0 +1,5 @@
+export * from './tetrahedral-graph.js'
+export * from './hexahedral-graph.js'
+export * from './dodecahedral-graph.js'
+export * from './octahedral-graph.js'
+export * from './icosahedral-graph.js'

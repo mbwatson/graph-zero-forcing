@@ -18,6 +18,8 @@ const inputToMatrix = input => input
     .map(x => parseInt(x))
   )
 
+const ITEM_HEIGHT = 48
+
 export const MatrixEditor = () => {
   const { graph } = useGraph()
   const textElement = useRef()
@@ -100,6 +102,12 @@ export const MatrixEditor = () => {
             anchorEl={ menuAnchorEl }
             open={ menuOpen }
             onClose={ handleCloseMenu }
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 8,
+                width: '20ch',
+              },
+            }}            
           >
             {
               Object.keys(matrices).map(name => (

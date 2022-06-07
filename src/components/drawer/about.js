@@ -10,19 +10,19 @@ export const About = () => {
         </Typography>
         <br />
         <Typography paragraph>
-          First and foremost-- this application exists because it{ `'` }s
-          fun to build, and it{ `'` }s fun to play with.
+          First and foremost, this application exists because it{ `'` }s
+          fun to work on, and it{ `'` }s fun to play with.
           It was created to supplement thinking about zero forcing on graphs,
           particularly as it relates to the inverse eigenvalue problem.
         </Typography>
         <Typography paragraph>
-          <em>Zero forcing</em> is an iterative graph coloring process, during
-          which a coloring rule is applied. The coloring rule says that, given
+          <strong>Zero forcing</strong> is an iterative graph coloring process, during
+          which a coloring rule is applied. Our coloring rule says that, given
           a set of colored vertices, any colored vertex with a single uncolored
           neighbor causes that neighbor to be colored.
-          A <em>zero forcing set</em> is a set of initially colored vertices which,
+          A <strong>zero forcing set</strong> is a set of initially colored vertices which,
           after iteratively applying the coloring rule, eventually colors the entire graph.
-          Of particular interest, is identifying <em>minimal</em> zero forcing sets.
+          Of particular interest, is identifying <strong>minimal</strong> zero forcing sets.
         </Typography>
       </Box>
 
@@ -44,13 +44,13 @@ export const About = () => {
         </Typography>
         <Typography paragraph>
           Within this drawer resides the text you{`'`}re viewing now.
-          Additionally, the graph rendered can be customized by entering any
+          Additionally, the rendered graph can be customized by entering any
           adjacency matrix into the text field under the Matrix tab.
           A few preset matrices are available for convenience.
-          Click the Generate Graph button to rener a new graph with the new
-          adjacency matrix.
-          Lastly, a minimal set of graph settings lives in the Settings tab to
-          let users customize the experience a bit.
+          Click the Generate Graph button to render a new graph with the
+          entered adjacency matrix.
+          Lastly, a minimal set of settings lives in the Settings tab to
+          allow a bit of customization.
         </Typography>
         <Typography paragraph>
         </Typography>
