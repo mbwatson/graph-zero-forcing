@@ -1,5 +1,4 @@
-import { Box, Divider, Stack, Tooltip, Typography } from '@mui/material'
-import { GitHub as GitHubIcon } from '@mui/icons-material'
+import { Box, Stack, Typography } from '@mui/material'
 
 export const Instructions = () => {
   return (
