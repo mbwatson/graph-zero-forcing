@@ -4,6 +4,7 @@ import { BuckyBall } from './buckyball'
 import { BullGraph } from './bull-graph'
 import { Cell600 } from './cell-600'
 import { CoxeterGraph } from './coxeter-graph'
+import { DejterGraph } from './dejter-graph'
 import { DesarguesGraph } from './desargues-graph'
 import { GolombGraph } from './golomb-graph'
 import { GossetGraph } from './gosset-graph'
@@ -16,6 +17,7 @@ export default {
   BullGraph,
   Cell600,
   CoxeterGraph,
+  DejterGraph,
   DesarguesGraph,
   GolombGraph,
   GossetGraph,
