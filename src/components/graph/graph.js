@@ -27,10 +27,10 @@ export const Graph = ({ nodes, edges, height, width }) => {
   }
 
   const paintRing = useCallback((node, ctx) => {
-    // add ring just for highlighted nodes
     ctx.beginPath()
-    ctx.arc(node.x, node.y, graph.settings.nodeSize + 2, 0, 2 * Math.PI, false)
+    ctx.arc(node.x, node.y, graph.settings.nodeSize + 1.5, 0, 2 * Math.PI, false)
     ctx.strokeStyle = `${ graph.settings.color }66`
+    ctx.lineWidth = 3
     ctx.stroke()
   }, [graph.settings])
 
