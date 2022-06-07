@@ -34,7 +34,12 @@ export const Graph = ({ nodes, edges, height, width }) => {
     ctx.stroke()
   }, [graph.settings])
 
-  const handleClickNode = useCallback((node, ) => {
+  const handleClickNode = useCallback((node, event) => {
+    const neighbors = graph.neighbors(node.id)
+    if (event.ctrlKey) {
+      graph.toggleNeighborhoodColor(node.id)
+      return
+    }
     graph.toggleNodeColor(node.id)
   }, [graph.coloredNodes])
 

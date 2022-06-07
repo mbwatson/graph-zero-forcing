@@ -52,6 +52,16 @@ export const GraphProvider = ({ children }) => {
     }
   }, [coloredNodes])
 
+  const toggleNeighborhoodColor = useCallback(id => {
+    const _coloredNodes = new Set([...coloredNodes])
+    if (_coloredNodes.has(id)) {
+      [...neighbors(id)].forEach(i => _coloredNodes.delete(i))
+      setColoredNodes(new Set(_coloredNodes))
+      return
+    }
+    setColoredNodes(new Set([...coloredNodes, id, ...neighbors(id)]))
+  }, [coloredNodes])
+
   const colorNode = useCallback(i => {
     setColoredNodes(new Set([...coloredNodes, i]))
   }, [coloredNodes])
@@ -94,8 +104,10 @@ export const GraphProvider = ({ children }) => {
         edges,
         adjacencyMatrix,
         setMatrix,
+        colorNode,
         coloredNodes,
         toggleNodeColor,
+        toggleNeighborhoodColor,
         uncolorAllNodes,
         neighbors,
         settings: {
