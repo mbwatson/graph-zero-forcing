@@ -3,6 +3,7 @@ import { BidiakisCube } from './bidiakis-cube'
 import { BuckyBall } from './buckyball'
 import { BullGraph } from './bull-graph'
 import { Cell600 } from './cell-600'
+import { CoxeterGraph } from './coxeter-graph'
 import { GolombGraph } from './golomb-graph'
 import { GossetGraph } from './gosset-graph'
 import { McGeeGraph } from './mcgee-graph'
@@ -13,6 +14,7 @@ export default {
   BuckyBall,
   BullGraph,
   Cell600,
+  CoxeterGraph,
   GolombGraph,
   GossetGraph,
   McGeeGraph,
