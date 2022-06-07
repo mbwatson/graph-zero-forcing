@@ -8,6 +8,31 @@ import { useApp } from '../../context'
 import { MatrixEditor } from './matrix-editor'
 import { SettingsForm } from './settings-form'
 import { About } from './about'
+import { Instructions } from './instructions'
+
+
+const tabs = [
+  {
+    id: 'instructions',
+    label: 'Instructions',
+    Component: Instructions
+  },
+  {
+    id: 'matrix',
+    label: 'Matrix',
+    Component: MatrixEditor
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    Component: SettingsForm
+  },
+  {
+    id: 'about',
+    label: 'About',
+    Component: About
+  },
+]
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -65,20 +90,18 @@ export const Drawer = () => {
           onChange={ handleClickTab }
           variant="scrollable"
         >
-          <Tab label="Matrix" />
-          <Tab label="Settings" />
-          <Tab label="About" />
+          {
+            tabs.map(tab => <Tab label={ tab.label } key={ `tab-label-${ tab.label }` } /> )
+          }
         </Tabs>
         <br />
-        <TabPanel value={ currentTab } index={ 0 }>
-          <MatrixEditor />
-        </TabPanel>
-        <TabPanel value={ currentTab } index={ 1 }>
-          <SettingsForm />
-        </TabPanel>
-        <TabPanel value={ currentTab } index={ 2 }>
-          <About />
-        </TabPanel>
+        {
+          tabs.map(({ Component, ...tab }, i) => (
+            <TabPanel value={ currentTab } index={ i } key={ `tab-${ tab.label }` }>
+              <Component />
+            </TabPanel>
+          ))
+        }
       </CardContent>
     </MuiDrawer>
   )
