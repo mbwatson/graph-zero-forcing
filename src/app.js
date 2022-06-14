@@ -3,7 +3,7 @@ import ReactResizeDetector from 'react-resize-detector';
 import { useApp } from './context'
 import { Graph, useGraph } from './components/graph'
 import { Toolbar } from './components/toolbar'
-import { Colorbar } from './components/colorbar'
+import { Colorbar, MatrixGrid } from './modules'
 import { Drawer } from './components/drawer'
 
 export const App = () => {
@@ -40,6 +40,8 @@ export const App = () => {
       </ReactResizeDetector>
 
       <Colorbar />
+
+      <MatrixGrid />
 
     </Box>
   )
