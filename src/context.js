@@ -63,7 +63,7 @@ export const AppProvider = ({ children }) => {
       return {
         ...obj,
         [key]: {
-          module: availableModules[key],
+          Module: availableModules[key],
           active: true,
         },
       }
