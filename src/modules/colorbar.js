@@ -6,7 +6,7 @@ import {
   Undo as ResetIcon,
   SkipNext as StepIcon,
 } from '@mui/icons-material'
-import { useGraph } from './graph'
+import { useGraph } from '../components/graph'
 import { useApp } from '../context'
 
 export const Colorbar = () => {

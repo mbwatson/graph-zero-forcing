@@ -1,15 +1,16 @@
+import { Fragment } from 'react'
 import { Box, useTheme } from '@mui/material'
 import ReactResizeDetector from 'react-resize-detector';
 import { useApp } from './context'
 import { Graph, useGraph } from './components/graph'
 import { Toolbar } from './components/toolbar'
-import { Colorbar } from './components/colorbar'
+import { Colorbar, MatrixGrid } from './modules'
 import { Drawer } from './components/drawer'
 
 export const App = () => {
   const theme = useTheme()
   const { graph } = useGraph()
-  const { drawerOpen, toggleDrawer } = useApp()
+  const { drawerOpen, toggleDrawer, modules } = useApp()
 
   return (
     <Box sx={{
@@ -39,7 +40,16 @@ export const App = () => {
         }
       </ReactResizeDetector>
 
-      <Colorbar />
+      {
+        Object.keys(modules).map(key => {
+          const { active, Module } = modules[key]
+          return (
+            <Fragment key={ `module-${ key }` }>
+              { active && <Module /> }
+            </Fragment>
+          )
+        })
+      }
 
     </Box>
   )

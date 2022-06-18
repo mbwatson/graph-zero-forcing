@@ -84,7 +84,7 @@ export const GraphProvider = ({ children }) => {
       }
     })
     return neighbors
-  }, [coloredNodes])
+  }, [adjacencyMatrix, coloredNodes])
 
   const colorStep = useCallback(() => {
     const nextColoredNodes = new Set();
@@ -96,6 +96,16 @@ export const GraphProvider = ({ children }) => {
     })
     setColoredNodes(new Set([...coloredNodes, ...nextColoredNodes]))
   }, [coloredNodes])
+
+  const matrixToggle = useCallback((row, col) => {
+    if (row === col) {
+      return
+    }
+    const _m = [...matrix]
+    _m[row][col] = (_m[row][col] + 1) % 2
+    _m[col][row] = _m[row][col]
+    setMatrix(_m)
+  }, [adjacencyMatrix])
 
   return (
     <GraphContext.Provider value={{
@@ -110,6 +120,7 @@ export const GraphProvider = ({ children }) => {
         toggleNeighborhoodColor,
         uncolorAllNodes,
         neighbors,
+        matrixToggle,
         settings: {
           color,
           setColor,
