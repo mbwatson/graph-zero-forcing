@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Box, FormControl, FormControlLabel, FormLabel, Slider, Stack, Switch, Typography, useTheme } from '@mui/material'
 import { HexColorPicker } from 'react-colorful'
 import { useGraph } from '../graph'
@@ -7,7 +7,7 @@ import { useApp } from '../../context'
 export const SettingsForm = () => {
   const theme = useTheme()
   const { graph } = useGraph()
-  const { MODES, mode, setMode } = useApp()
+  const { MODES, mode, setMode, modules, toggleModuleActivation } = useApp()
 
   const switchStyle = useMemo(() => ({
     width: 62,
@@ -107,6 +107,38 @@ export const SettingsForm = () => {
             color={ graph.settings.color }
             onChange={ graph.settings.setColor }
           />
+        </FormControl>
+
+        <Typography variant="h2" sx={{ flex: 1, fontSize: '135%' }}>Modules</Typography>
+
+        <FormControl sx={{
+          flexDirection: 'row',
+          gap: '1rem',
+          '& .MuiFormLabel-root': {
+            width: '100px',
+          },
+          '& .react-colorful': {
+            width: '100%',
+            height: '150px',
+            maxWidth: '400px',
+          }
+        }}>
+          {
+            Object.keys(modules).map(key => (
+              <Fragment key={ `${ key }-module` }>
+                <FormLabel color="primary">{ key }</FormLabel>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={ modules[key].active }
+                      onChange={ () => toggleModuleActivation(key) }
+                    />
+                  }
+                  label={ modules[key].active ? 'ON' : 'OFF' }
+                />
+              </Fragment>
+            ))
+          }
         </FormControl>
 
       </Stack>

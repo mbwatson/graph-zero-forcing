@@ -5,7 +5,7 @@ import * as d3 from 'd3'
 import { Resizable } from 're-resizable'
 import { useGraph } from '../components/graph'
 
-export const Matrix = ({ size }) => {
+const Matrix = ({ size }) => {
   const { graph } = useGraph()
   const matrixContainer = useRef()
 
