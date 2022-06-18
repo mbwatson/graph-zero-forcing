@@ -112,20 +112,18 @@ export const SettingsForm = () => {
         <Typography variant="h2" sx={{ flex: 1, fontSize: '135%' }}>Modules</Typography>
 
         <FormControl sx={{
-          flexDirection: 'row',
+          flexDirection: 'column',
           gap: '1rem',
-          '& .MuiFormLabel-root': {
-            width: '100px',
+          '& .MuiFormLabel-root': { },
+          '& .label-and-switch-box': {
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
           },
-          '& .react-colorful': {
-            width: '100%',
-            height: '150px',
-            maxWidth: '400px',
-          }
         }}>
           {
             Object.keys(modules).map(key => (
-              <Fragment key={ `${ key }-module` }>
+              <Box key={ `${ key }-module` } className="label-and-switch-box">
                 <FormLabel color="primary">{ key }</FormLabel>
                 <FormControlLabel
                   control={
@@ -136,7 +134,7 @@ export const SettingsForm = () => {
                   }
                   label={ modules[key].active ? 'ON' : 'OFF' }
                 />
-              </Fragment>
+              </Box>
             ))
           }
         </FormControl>
